@@ -47,10 +47,10 @@ public class LumaLoginTest {
         assertEquals(customerLogin.getText(), "Customer Login");
 
         WebElement email = driver.findElement(By.id("email"));
-        email.sendKeys("collins.einstein@gmail.com");
+        email.sendKeys(System.getenv("luma.username"));
 
         WebElement password = driver.findElement(By.id("pass"));
-        password.sendKeys("DSv76shfKGD!GBKqwN2%");
+        password.sendKeys(System.getenv("luma.password"));
 
         WebElement signInButton = driver.findElement(By.id("send2"));
         signInButton.click();
