@@ -8,8 +8,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
 import static org.testng.Assert.assertEquals;
 
 public class GettingStartedTest {
@@ -29,7 +27,7 @@ public class GettingStartedTest {
     @Test
     public void formSubmitTest() {
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(1));
+
         driver.get("https://www.selenium.dev/selenium/web/web-form.html");
         driver.getTitle();
         /*Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(2));

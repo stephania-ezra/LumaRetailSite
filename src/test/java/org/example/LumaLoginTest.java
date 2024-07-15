@@ -6,9 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -17,21 +14,9 @@ import static org.testng.Assert.assertTrue;
 
 public class LumaLoginTest {
 
-    WebDriver driver;
+    public WebDriver driver = new ChromeDriver();
 
-    @BeforeTest
-    public void setup() {
-        driver = new ChromeDriver();
-    }
-
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
-    }
-
-    @Test
     public void login() {
-
         driver.get("https://magento.softwaretestingboard.com/");
         assertEquals(driver.getTitle(), "Home Page");
 
