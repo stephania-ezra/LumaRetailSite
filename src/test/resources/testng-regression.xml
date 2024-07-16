@@ -4,9 +4,9 @@
 <suite name="Suite1" verbose="1" >
     <test name="Regression" parallel="false" thread-count="1" >
         <classes>
-            <class name="org.example.SimpleSearchTest"></class>
-            <class name="org.example.SaleTest"></class>
-            <class name="org.example.WishlistTest"></class>
+            <class name="org.luma.SimpleSearchTest"></class>
+            <class name="org.luma.SaleTest"></class>
+            <class name="org.luma.WishlistTest"></class>
         </classes>
     </test>
 </suite>

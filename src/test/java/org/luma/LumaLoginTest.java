@@ -1,4 +1,4 @@
-package org.example;
+package org.luma;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -32,7 +32,6 @@ public class LumaLoginTest {
 
         //checking "Customer Login"
         assertEquals(customerLogin.getText(), "Customer Login");
-
         WebElement email = driver.findElement(By.id("email"));
         email.sendKeys(System.getenv("luma.username"));
 
@@ -46,7 +45,7 @@ public class LumaLoginTest {
         boolean result = new WebDriverWait(driver, Duration.ofSeconds(10))
                 .ignoring(StaleElementReferenceException.class)
                 .until((WebDriver d) -> {
-                    WebElement welcomeUser = driver
+                    WebElement welcomeUser = d
                             .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[1]/span"));
 
                     if (welcomeUser.getText().equalsIgnoreCase("Welcome, Stephania Collins!")) {
