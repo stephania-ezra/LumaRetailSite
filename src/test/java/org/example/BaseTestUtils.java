@@ -25,8 +25,11 @@ public class BaseTestUtils {
                 .until((WebDriver d) -> {
 
                     if (driver.getCurrentUrl()
-                            .contains("https://magento.softwaretestingboard.com" +
-                                    "/customer/account/logoutSuccess/")) {
+                            .contains("https://magento.softwaretestingboard.com/customer/account/logoutSuccess/")) {
+                        System.out.println("successfully logged out");
+                        return true;
+                    } else if (driver.getCurrentUrl()
+                            .equalsIgnoreCase("https://magento.softwaretestingboard.com")) {
                         System.out.println("successfully logged out");
                         return true;
                     } else

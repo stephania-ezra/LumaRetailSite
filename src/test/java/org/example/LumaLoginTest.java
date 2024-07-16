@@ -50,7 +50,7 @@ public class LumaLoginTest {
                             .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[1]/span"));
 
                     if (welcomeUser.getText().equalsIgnoreCase("Welcome, Stephania Collins!")) {
-                        System.out.println("working " + welcomeUser.getText());
+                        System.out.println("Logged In " + welcomeUser.getText());
                         return true;
                     } else {
                         System.out.println(welcomeUser.getText());

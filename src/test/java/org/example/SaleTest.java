@@ -14,7 +14,7 @@ public class SaleTest extends LumaLoginTest {
         BaseTestUtils.tearDown(driver);
     }
 
-    @Test(priority = 0)
+    @Test(priority = 1)
     public void openSalePage() {
         login();
 
@@ -33,7 +33,7 @@ public class SaleTest extends LumaLoginTest {
                 , "https://magento.softwaretestingboard.com/promotions/women-sale.html");
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void dSortByHighestPrice() {
         // Dropdown on Sale Page
         WebElement sorter = driver.findElement(By.id("sorter"));
@@ -51,7 +51,7 @@ public class SaleTest extends LumaLoginTest {
         descendingdirection.click();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void addToWishList() {
         // Open First Dress Item
         WebElement firstDress = driver
