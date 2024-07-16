@@ -16,7 +16,9 @@ public class LumaLoginTest {
 
     public WebDriver driver = new ChromeDriver();
 
+
     public void login() {
+        driver.manage().window().maximize();
         driver.get("https://magento.softwaretestingboard.com/");
         assertEquals(driver.getTitle(), "Home Page");
 
