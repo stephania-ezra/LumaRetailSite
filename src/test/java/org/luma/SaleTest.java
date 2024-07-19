@@ -16,10 +16,10 @@ public class SaleTest extends LumaLoginTest {
         System.out.println("setting context");
         context.setAttribute("WebDriver", driver);
     }
-    
+
     @AfterClass
     void tearDown() {
-        BaseTestUtils btu = new BaseTestUtils();
+        BaseUtilTest btu = new BaseUtilTest();
         btu.tearDown(driver);
     }
 

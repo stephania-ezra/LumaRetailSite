@@ -20,7 +20,7 @@ public class SimpleSearchTest extends LumaLoginTest {
 
     @AfterClass
     void tearDown() {
-        BaseTestUtils btu = new BaseTestUtils();
+        BaseUtilTest btu = new BaseUtilTest();
         btu.tearDown(driver);
     }
 

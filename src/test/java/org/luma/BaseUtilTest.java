@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
-public class BaseTestUtils {
+public class BaseUtilTest {
 
 
     void tearDown(WebDriver driver) {

@@ -3,7 +3,7 @@
 
 <suite name="Suite1" parallel="tests" thread-count="1">
     <listeners>
-        <listener class-name="org.luma.listeners.CustomListener"></listener>
+        <listener class-name="org.luma.listeners.CustomListener"/>
     </listeners>
     <test name="SimpleSearchTest">
         <classes>
