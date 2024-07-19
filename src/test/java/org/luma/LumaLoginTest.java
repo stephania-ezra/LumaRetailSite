@@ -18,6 +18,8 @@ public class LumaLoginTest {
 
 
     public void login() {
+
+        System.out.println("running login from " + Thread.currentThread().threadId());
         driver.manage().window().maximize();
         driver.get("https://magento.softwaretestingboard.com/");
         assertEquals(driver.getTitle(), "Home Page");

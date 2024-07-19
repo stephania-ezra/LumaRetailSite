@@ -2,20 +2,30 @@ package org.luma;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 public class SaleTest extends LumaLoginTest {
 
+    @BeforeClass
+    public void setDriver(ITestContext context) {
+        System.out.println("setting context");
+        context.setAttribute("WebDriver", driver);
+    }
+    
     @AfterClass
     void tearDown() {
-        BaseTestUtils.tearDown(driver);
+        BaseTestUtils btu = new BaseTestUtils();
+        btu.tearDown(driver);
     }
 
     @Test(priority = 1)
     public void openSalePage() {
+        System.out.println("running openSalePage from " + Thread.currentThread().threadId());
         login();
 
         // sale on HomePage

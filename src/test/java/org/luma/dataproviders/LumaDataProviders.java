@@ -19,7 +19,7 @@ public class LumaDataProviders {
         return readCsvJacket();
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Iterator<List<String>> otherProducts() throws IOException {
         return readCsvOtherProducts();
     }
