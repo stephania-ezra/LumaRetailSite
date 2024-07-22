@@ -1,5 +1,7 @@
 package org.luma;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
@@ -14,13 +16,15 @@ import static org.testng.Assert.assertTrue;
 
 public class LumaLoginTest {
 
+    private final Logger log = LogManager.getLogger(LumaLoginTest.class);
     public WebDriver driver = new ChromeDriver();
 
 
     public void login() {
 
-        System.out.println("running login from " + Thread.currentThread().threadId());
+        log.info("running login from {}", Thread.currentThread().threadId());
         driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.get("https://magento.softwaretestingboard.com/");
         assertEquals(driver.getTitle(), "Home Page");
 
@@ -51,10 +55,10 @@ public class LumaLoginTest {
                             .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[1]/span"));
 
                     if (welcomeUser.getText().equalsIgnoreCase("Welcome, Stephania Collins!")) {
-                        System.out.println("Logged In " + welcomeUser.getText());
+                        log.info("Logged In {}", welcomeUser.getText());
                         return true;
                     } else {
-                        System.out.println(welcomeUser.getText());
+                        log.info(welcomeUser.getText());
                         return false;
                     }
                 });

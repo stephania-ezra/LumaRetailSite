@@ -17,32 +17,36 @@ import java.time.Duration;
 public class BaseUtilTest {
 
 
-    void tearDown(WebDriver driver) {
-        WebElement signOutToggleButton = driver
-                .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button"));
-        signOutToggleButton.click();
+    public void tearDown(WebDriver driver) {
+        try {
+            WebElement signOutToggleButton = driver
+                    .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button"));
+            signOutToggleButton.click();
 
-        WebElement signOut = driver
-                .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[3]/a"));
-        signOut.click();
+            WebElement signOut = driver
+                    .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[3]/a"));
+            signOut.click();
 
 
-        // using web driver wait and checking the homepage redirect
-        new WebDriverWait(driver, Duration.ofSeconds(10))
-                .ignoring(StaleElementReferenceException.class)
-                .until((WebDriver d) -> {
+            // using web driver wait and checking the homepage redirect
+            new WebDriverWait(driver, Duration.ofSeconds(10))
+                    .ignoring(StaleElementReferenceException.class)
+                    .until((WebDriver d) -> {
 
-                    if (d.getCurrentUrl()
-                            .contains("https://magento.softwaretestingboard.com/customer/account/logoutSuccess/")) {
-                        System.out.println("successfully logged out");
-                        return true;
-                    } else if (d.getCurrentUrl()
-                            .equalsIgnoreCase("https://magento.softwaretestingboard.com")) {
-                        System.out.println("successfully logged out");
-                        return true;
-                    } else
-                        return false;
-                });
+                        if (d.getCurrentUrl()
+                                .contains("https://magento.softwaretestingboard.com/customer/account/logoutSuccess/")) {
+                            System.out.println("successfully logged out");
+                            return true;
+                        } else if (d.getCurrentUrl()
+                                .equalsIgnoreCase("https://magento.softwaretestingboard.com")) {
+                            System.out.println("successfully logged out");
+                            return true;
+                        } else
+                            return false;
+                    });
+        } catch (NoSuchElementException nsee) {
+            System.out.println("not logged in yet, so no need to sign out. ");
+        }
 
 //        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 //        // LocalStorage
@@ -96,5 +100,32 @@ public class BaseUtilTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * This method will stop the execution using Thread.sleep
+     *
+     * @param value in seconds
+     */
+    public void stopTheFlow(long value) {
+        try {
+            if (value == 0)
+                value = 5;
+            System.out.println("waiting " + value + " seconds");
+            Thread.sleep(Duration.ofSeconds(value));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * This method will scroll the browser to the top
+     *
+     * @param driver WebDriver
+     */
+    public void scrollToTop(WebDriver driver) {
+        // Scroll to the top of the page
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 0);");
     }
 }
