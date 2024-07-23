@@ -9,7 +9,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -85,39 +88,6 @@ public class JourneyTest extends LumaLoginTest {
         }
     }
 
-    @Ignore
-    @Test(priority = 4)
-    public void removeFromCart() {
-        // TODO - click back, verify url
-
-        but.scrollToTop(driver);
-
-        // click the cart
-        WebElement cart = driver
-                .findElement(By.xpath("/html/body/div[2]/header/div[2]/div[1]/a"));
-        cart.click();
-
-        // wait and then click remove button
-        but.stopTheFlow(5);
-        WebElement removeButton = driver.findElement(By
-                .xpath("/html/body/div[2]/header/div[2]/div[1]/div/div/div/div[2]" +
-                        "/div[4]/ol/li/div/div/div[3]/div[2]/a"));
-        removeButton.click();
-
-        // wait and then click ok button on widget
-        but.stopTheFlow(5);
-        WebElement OkButton = driver.findElement(By
-                .xpath("/html/body/div[4]/aside[2]/div[2]/footer/button[2]"));
-        OkButton.click();
-
-        // wait and verify the cart is empty
-        but.stopTheFlow(5);
-        WebElement noOfItemsMessage = driver.findElement(By
-                .xpath("/html/body/div[2]/header/div[2]/div[1]/div/div/div/div[2]/strong"));
-        log.info("removeFromCart: noOfItemsMessage is {}", noOfItemsMessage.getText());
-        assertEquals(noOfItemsMessage.getText(), "You have no items in your shopping cart.");
-    }
-
     @Test(priority = 3)
     public void proceedToCheckOut() {
 
@@ -148,5 +118,41 @@ public class JourneyTest extends LumaLoginTest {
                                 "/li[1]/div[2]/div[1]/div/div/div"));
         log.info("shippingAddress = {}", shippingAddress.getText());
         assertTrue(shippingAddress.getText().contains("Muthu Swamy Street"));
+    }
+
+    @Test(priority = 4)
+    public void removeFromCart() {
+        // click back, verify url
+        driver.navigate().back();
+
+        assertEquals(driver.getCurrentUrl()
+                , "https://magento.softwaretestingboard.com/lucia-cross-fit-bra.html");
+
+        but.scrollToTop(driver);
+
+        // click the cart
+        WebElement cart = driver
+                .findElement(By.xpath("/html/body/div[2]/header/div[2]/div[1]/a"));
+        cart.click();
+
+        // wait and then click remove button
+        but.stopTheFlow(5);
+        WebElement removeButton = driver.findElement(By
+                .xpath("/html/body/div[2]/header/div[2]/div[1]/div/div/div/div[2]" +
+                        "/div[4]/ol/li/div/div/div[3]/div[2]/a"));
+        removeButton.click();
+
+        // wait and then click ok button on widget
+        but.stopTheFlow(5);
+        WebElement OkButton = driver.findElement(By
+                .xpath("/html/body/div[4]/aside[2]/div[2]/footer/button[2]"));
+        OkButton.click();
+
+        // wait and verify the cart is empty
+        but.stopTheFlow(5);
+        WebElement noOfItemsMessage = driver.findElement(By
+                .xpath("/html/body/div[2]/header/div[2]/div[1]/div/div/div/div[2]/strong"));
+        log.info("removeFromCart: noOfItemsMessage is {}", noOfItemsMessage.getText());
+        assertEquals(noOfItemsMessage.getText(), "You have no items in your shopping cart.");
     }
 }
