@@ -11,6 +11,11 @@ import static org.testng.Assert.assertEquals;
 
 public class SaleTest extends LumaLoginTest {
 
+    /**
+     * This Method sets the Context attribute used by screenshot listener
+     *
+     * @param context
+     */
     @BeforeClass
     public void setDriver(ITestContext context) {
         System.out.println("setting context");
