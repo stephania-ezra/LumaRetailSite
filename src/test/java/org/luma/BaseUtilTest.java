@@ -128,4 +128,14 @@ public class BaseUtilTest {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, 0);");
     }
+
+    /**
+     * @param driver
+     */
+    public void getFirstsProductItemElement(WebDriver driver) {
+        WebElement shopErinElement = driver
+                .findElement(By.xpath("//*[@id=\"maincontent\"]/div[3]/div/" +
+                        "div[2]/div[1]/div/a[3]/span/span[2]"));
+        shopErinElement.click();
+    }
 }

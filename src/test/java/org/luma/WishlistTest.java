@@ -40,15 +40,13 @@ public class WishlistTest extends LumaLoginTest {
         WebElement myWishList = driver
                 .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[2]/a"));
         myWishList.click();
-
+        
         try {
-            WebElement profileItemCount = driver
-                    .findElement(By
-                            .xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[2]/a/span"));
+            WebElement profileItemCount = driver.findElement(By
+                    .xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[2]/a/span"));
             if (profileItemCount.isDisplayed()) {
-                WebElement message = driver
-                        .findElement(By
-                                .xpath("/html/body/div[2]/main/div[2]/div[1]/div[3]/div/p/span"));
+                WebElement message = driver.findElement(By
+                        .xpath("/html/body/div[2]/main/div[2]/div[1]/div[3]/div/p/span"));
                 System.out.println("My Wish List count " + message.getText());
                 assertTrue(message.isDisplayed());
             }

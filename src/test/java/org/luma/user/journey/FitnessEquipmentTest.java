@@ -64,7 +64,5 @@ public class FitnessEquipmentTest extends LumaLoginTest {
             WebElement equipmentPrice = liElement.findElement(By.cssSelector("div > div > div.price-box.price-final_price"));
             log.info("equipmentPrice: {}", equipmentPrice.getText());
         }
-
-
     }
 }

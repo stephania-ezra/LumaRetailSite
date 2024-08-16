@@ -61,6 +61,8 @@ public class SaleTest extends LumaLoginTest {
         price.click();
 
         // Select Descending Direction
+        //copying the full xpath for the descending direction symbol
+
         WebElement descendingdirection = driver
                 .findElement(By.xpath("/html/body/div[2]/main/div[3]/div[1]/div[2]/div[4]/a"));
         descendingdirection.click();

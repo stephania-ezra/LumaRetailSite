@@ -24,12 +24,24 @@ public class LumaDataProviders {
         return readCsvOtherProducts();
     }
 
+    @DataProvider
+    public String[] recommendedURLS() {
+        return new String[]{"https://magento.softwaretestingboard.com/collections/erin-recommends.html",
+                "https://magento.softwaretestingboard.com/collections/erin-recommends.html?p=2"};
+    }
+
+    @DataProvider
+    public String[] recommendedURLSNew() {
+        return new String[]{"https://magento.softwaretestingboard.com/collections/yoga-new.html?p=2",
+                "https://magento.softwaretestingboard.com/collections/yoga-new.html?p=3"};
+    }
+
     Iterator<List<String>> readCsvJacket() throws IOException {
         return Files
                 .readAllLines(Paths.get("src", "test", "resources", "products.csv"))
                 .stream()
                 .map(line -> Arrays.asList(line.split(COMMA_DELIMITER)))
-                .filter(entry -> !entry.get(0).equalsIgnoreCase("name"))
+                .filter(entry -> !entry.getFirst().equalsIgnoreCase("name"))
                 .filter(entry -> entry.get(2).equalsIgnoreCase("jacket"))
                 .toList().iterator();
     }
@@ -39,7 +51,7 @@ public class LumaDataProviders {
                 .readAllLines(Paths.get("src", "test", "resources", "products.csv"))
                 .stream()
                 .map(line -> Arrays.asList(line.split(COMMA_DELIMITER)))
-                .filter(entry -> !entry.get(0).equalsIgnoreCase("name"))
+                .filter(entry -> !entry.getFirst().equalsIgnoreCase("name"))
                 .filter(entry -> !entry.get(2).equalsIgnoreCase("jacket"))
                 .toList().iterator();
     }
@@ -57,6 +69,7 @@ public class LumaDataProviders {
         for (Iterator<List<String>> it = readCsvOtherProducts(); it.hasNext(); ) {
             List<String> item = it.next();
             System.out.println("item: " + item);
+
         }
     }
 }
