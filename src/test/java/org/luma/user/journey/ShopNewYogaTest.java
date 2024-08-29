@@ -3,7 +3,7 @@ package org.luma.user.journey;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.luma.BaseUtilTest;
-import org.luma.dataproviders.LumaDataProviders;
+import org.luma.dataproviders.TestLumaDataProviders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -71,7 +71,7 @@ public class ShopNewYogaTest {
         }
     }
 
-    @Test(priority = 3, dataProvider = "recommendedURLSNew", dataProviderClass = LumaDataProviders.class)
+    @Test(priority = 3, dataProvider = "recommendedURLSNew", dataProviderClass = TestLumaDataProviders.class)
     public void pagination(String url) {
         driver.manage().window().maximize();
         driver.get(url);
@@ -95,7 +95,7 @@ public class ShopNewYogaTest {
         }
     }
 
-    @Test(priority = 4, dataProvider = "recommendedURLSNew", dataProviderClass = LumaDataProviders.class)
+    @Test(priority = 4, dataProvider = "recommendedURLSNew", dataProviderClass = TestLumaDataProviders.class)
     public void paginationReviews(String url) {
         // Listing the Reviews , Price , Size and Color of 2nd and 3rd Page
         driver.manage().window().maximize();

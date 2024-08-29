@@ -1,5 +1,7 @@
 package org.luma;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.*;
@@ -16,6 +18,7 @@ import java.time.Duration;
 
 public class BaseUtilTest {
 
+    public final Logger log = LogManager.getLogger(BaseUtilTest.class);
 
     public void tearDown(WebDriver driver) {
         try {
@@ -35,24 +38,24 @@ public class BaseUtilTest {
 
                         if (d.getCurrentUrl()
                                 .contains("https://magento.softwaretestingboard.com/customer/account/logoutSuccess/")) {
-                            System.out.println("successfully logged out");
+                            log.info("successfully logged out");
                             return true;
                         } else if (d.getCurrentUrl()
                                 .equalsIgnoreCase("https://magento.softwaretestingboard.com")) {
-                            System.out.println("successfully logged out");
+                            log.info("successfully logged out");
                             return true;
                         } else
                             return false;
                     });
         } catch (NoSuchElementException nsee) {
-            System.out.println("not logged in yet, so no need to sign out. ");
+            log.info("not logged in yet, so no need to sign out. ");
         }
 
 //        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 //        // LocalStorage
 //        String localStorage = (String) jsExecutor.executeScript(String
 //                .format("return window.localStorage.getItem('%s');", "mage-cache-storage"));
-//        System.out.println("mage-cache-storage: " + localStorage);
+//        log.info("mage-cache-storage: " + localStorage);
 //        assertTrue(isCustomerDataPresent(localStorage));
 
         driver.quit();
@@ -70,9 +73,9 @@ public class BaseUtilTest {
         boolean retVal = false;
         JSONObject jo = new JSONObject(mageCacheStorage);
         JSONObject customer = (JSONObject) jo.get("customer");
-        System.out.println("customer : " + customer);
+        log.info("customer : " + customer);
         try {
-            System.out.println("firstname : " + customer.get("firstname"));
+            log.info("firstname : {}", customer.get("firstname"));
         } catch (JSONException je) {
             retVal = true;
         }
@@ -111,7 +114,7 @@ public class BaseUtilTest {
         try {
             if (value == 0)
                 value = 5;
-            System.out.println("waiting " + value + " seconds");
+            log.info("waiting {} seconds", value);
             Thread.sleep(Duration.ofSeconds(value));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

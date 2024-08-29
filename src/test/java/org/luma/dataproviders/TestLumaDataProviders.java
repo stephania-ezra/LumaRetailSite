@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class LumaDataProviders {
+public class TestLumaDataProviders {
 
     private static final String COMMA_DELIMITER = ",";
 

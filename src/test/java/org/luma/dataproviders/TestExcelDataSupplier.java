@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class ExcelDataSupplier {
+public class TestExcelDataSupplier {
 
     private static final String COMMA_DELIMITER = ",";
-    public final Logger log = LogManager.getLogger(ExcelDataSupplier.class);
+    public final Logger log = LogManager.getLogger(TestExcelDataSupplier.class);
 
     //data provider
     @DataProvider

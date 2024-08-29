@@ -1,6 +1,6 @@
 package org.luma;
 
-import org.luma.dataproviders.LumaDataProviders;
+import org.luma.dataproviders.TestLumaDataProviders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
@@ -29,7 +29,7 @@ public class CartTest extends LumaLoginTest {
         login();
     }
 
-    @Test(priority = 2, dataProvider = "otherProducts", dataProviderClass = LumaDataProviders.class)
+    @Test(priority = 2, dataProvider = "otherProducts", dataProviderClass = TestLumaDataProviders.class)
     public void addBagsToCart(List<String> item) {
         System.out.println(item.get(0) + " adding product to cart");
         driver.get(item.get(1));
@@ -38,7 +38,7 @@ public class CartTest extends LumaLoginTest {
         addToCart.click();
     }
 
-    @Test(priority = 3, dataProvider = "jacketProducts", dataProviderClass = LumaDataProviders.class)
+    @Test(priority = 3, dataProvider = "jacketProducts", dataProviderClass = TestLumaDataProviders.class)
     public void addJacketsToCart(List<String> item) {
         System.out.println(item.get(0) + " adding product to cart");
         driver.get(item.get(1));
