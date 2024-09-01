@@ -50,15 +50,27 @@ public class BaseUtilTest {
         } catch (NoSuchElementException nsee) {
             log.info("not logged in yet, so no need to sign out. ");
         }
-
 //        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 //        // LocalStorage
 //        String localStorage = (String) jsExecutor.executeScript(String
 //                .format("return window.localStorage.getItem('%s');", "mage-cache-storage"));
 //        log.info("mage-cache-storage: " + localStorage);
 //        assertTrue(isCustomerDataPresent(localStorage));
+        finally {
+            driver.quit();
+        }
+    }
 
-        driver.quit();
+    public void logoutAutomationExercise(WebDriver driver) {
+        try {
+            WebElement logoutElement = driver.findElement(By
+                    .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
+            logoutElement.click();
+        } catch (NoSuchElementException e) {
+            log.info("not logged in yet automationExercise, so no need to sign out. ");
+        } finally {
+            driver.quit();
+        }
     }
 
     /**

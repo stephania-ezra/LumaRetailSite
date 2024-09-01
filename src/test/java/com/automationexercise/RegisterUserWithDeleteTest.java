@@ -20,9 +20,9 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 @Listeners({CustomListener.class})
-public class RegisterUserTest {
+public class RegisterUserWithDeleteTest {
 
-    public final Logger log = LogManager.getLogger(RegisterUserTest.class);
+    public final Logger log = LogManager.getLogger(RegisterUserWithDeleteTest.class);
     public WebDriver driver = new ChromeDriver();
     BaseUtilTest but = new BaseUtilTest();
 
@@ -172,5 +172,25 @@ public class RegisterUserTest {
         // click continue button
         WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div/a"));
         continueButton.click();
+    }
+
+    @Test(priority = 4)
+    void deleteAccount() {
+        // 17. Click 'Delete Account' button
+        log.info("executing step 17");
+        WebElement deleteButtonElement = driver.findElement(By
+                .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[5]/a"));
+        deleteButtonElement.click();
+
+        // 18. Verify that 'ACCOUNT DELETED!' is visible
+        log.info("executing step 18");
+        WebElement deleteVerifyTextElement = driver.findElement(By
+                .xpath("//*[@id=\"form\"]/div/div/div/h2/b"));
+        assertEquals(deleteVerifyTextElement.getText().toUpperCase(), "ACCOUNT DELETED!");
+
+        // click 'Continue' button
+        log.info("executing step 19");
+        WebElement continueButtonElement = driver.findElement(By.cssSelector("#form > div > div > div > div > a"));
+        continueButtonElement.click();
     }
 }
