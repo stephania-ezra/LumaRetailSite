@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
@@ -145,12 +146,37 @@ public class BaseUtilTest {
     }
 
     /**
-     * @param driver
+     * This method will scroll the browser to the middle
+     *
+     * @param driver Webdriver
      */
-    public void getFirstsProductItemElement(WebDriver driver) {
-        WebElement shopErinElement = driver
-                .findElement(By.xpath("//*[@id=\"maincontent\"]/div[3]/div/" +
-                        "div[2]/div[1]/div/a[3]/span/span[2]"));
-        shopErinElement.click();
+    public void scrollToMiddle(WebDriver driver) {
+        // Scroll to the top of the page
+        scrollToMiddle(driver, "0, 400");
+    }
+
+    public void scrollToMiddle(WebDriver driver, String fromTo) {
+        // Scroll to the top of the page
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(" + fromTo + ");");
+    }
+
+    /**
+     * This method will scroll the browser to the footer
+     *
+     * @param driver Webdriver
+     */
+    public void scrollToFooter(WebDriver driver) {
+        // Scroll to the top of the page
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0, 800);");
+    }
+
+    public void hoverTheElement(WebDriver driver, WebElement element) {
+        //Creating object of an Actions class
+        Actions action = new Actions(driver);
+
+        //Performing the mouse hover action on the target element.
+        action.moveToElement(element).perform();
     }
 }
