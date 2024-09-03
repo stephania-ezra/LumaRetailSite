@@ -14,7 +14,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
 
 @Listeners({CustomListener.class})
 public class SearchProductTest {
@@ -59,6 +62,7 @@ public class SearchProductTest {
         WebElement productButtonElement = driver.findElement(By
                 .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[2]/a"));
         productButtonElement.click();
+        log.info("Product Button is clicked");
     }
 
     @Test(priority = 5)
@@ -66,21 +70,41 @@ public class SearchProductTest {
         log.info("executing step 5");
         //Verify user is navigated to ALL PRODUCTS page successfully
         assertEquals(driver.getTitle(), "Automation Exercise - All Products");
+        log.info("user navigated to {}", driver.getTitle());
     }
 
     @Test(priority = 6)
-    public void step6andStep7() {
-        log.info("executing step 6 and step 7");
+    public void step6() {
+        log.info("executing step 6");
         //Enter product name in search input and click search button
         WebElement searchInputElement = driver.findElement(By.id("search_product"));
         searchInputElement.sendKeys("Winter Top");
+        log.info("Search Input Element {} is given", searchInputElement.getText());
 
         WebElement searchButtonElement = driver.findElement(By.cssSelector("#submit_search"));
         searchButtonElement.click();
+        log.info("search button is clicked");
+    }
 
-        WebElement searchedElement = driver.findElement(By
-                .xpath("/html/body/section[2]/div[1]/div/div[2]/div/div[2]/div/div[1]/div[2]/div/p"));
-        assertEquals(searchInputElement.getText(), searchedElement);
-        log.info("Searched Product is displayed {}", searchedElement.getText());
+    @Test(priority = 7)
+    public void step7() {
+        log.info("executing step 7");
+        //Verify 'SEARCHED PRODUCTS' is visible
+        WebElement searchedProductsElement = driver.findElement(By
+                .xpath("/html/body/section[2]/div[1]/div/div[2]/div/h2"));
+        assertEquals(searchedProductsElement.getText(), "SEARCHED PRODUCTS");
+        log.info("Displaying {}", searchedProductsElement.getText());
+    }
+
+    @Test(priority = 8)
+    public void step8() {
+        log.info("executing step 8");
+        //Verify all the products related to search are visible
+        //scrolling to middle is given in BaseUtilTest
+        but.scrollToMiddle(driver);
+        WebElement featureItemsElement = driver.findElement(By
+                .xpath("/html/body/section[2]/div[1]/div/div[2]/div"));
+        List<WebElement> allProductElements = featureItemsElement.findElements(By.className("col-sm-4"));
+        assertFalse(allProductElements.isEmpty());
     }
 }
