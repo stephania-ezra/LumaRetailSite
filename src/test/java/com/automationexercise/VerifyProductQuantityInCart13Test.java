@@ -35,7 +35,7 @@ public class VerifyProductQuantityInCart13Test {
 
     @AfterClass
     void tearDown() {
-//        but.logoutAutomationExercise(driver);
+        but.logoutAutomationExercise(driver);
     }
 
     @Test(priority = 1)
@@ -85,5 +85,57 @@ public class VerifyProductQuantityInCart13Test {
         WebElement quantityButtonElement = driver.findElement(By.xpath("//*[@id=\"quantity\"]"));
         quantityButtonElement.clear();
         quantityButtonElement.sendKeys("4");
+        //check with darli
+        assertEquals(quantityButtonElement.getAttribute("value"), "4");
+    }
+
+    @Test(priority = 7)
+    public void step7() {
+        log.info("executing step 7");
+        assertEquals(driver.getTitle(), "Automation Exercise - Product Details");
+
+        //Click 'Add to cart' button
+        WebElement addToCartButtonElement = driver.findElement(By.cssSelector("body > section > div > " +
+                "div > div.col-sm-9.padding-right > div.product-details > div.col-sm-7 > div > span > button"));
+        addToCartButtonElement.click();
+        log.info("Add to Cart button is Clicked");
+    }
+
+    @Test(priority = 8)
+    public void step8() {
+        log.info("executing step 8");
+        but.stopTheFlow(5);
+        //Click 'View Cart' button
+        WebElement viewCartElement = driver.findElement(By
+                .xpath("//*[@id=\"cartModal\"]/div/div/div[2]/p[2]/a"));
+        viewCartElement.click();
+    }
+
+    @Test(priority = 9)
+    public void step9() {
+        log.info("executing step 9");
+        assertEquals(driver.getTitle(), "Automation Exercise - Checkout");
+
+        //Verify that product is displayed in cart page with exact quantity
+        //retrieving table details
+        WebElement table = driver.findElement(By.id("cart_info_table"));
+        List<WebElement> headers = table.findElements(By.tagName("td"));
+        for (WebElement header : headers) {
+            String text = header.getText();
+            log.info(text);
+        }
+        List<WebElement> allRows = table.findElements(By.cssSelector("tbody tr"));
+        int size = allRows.size();
+        log.info("Rows size: " + size);
+        if (size == 1) {
+            log.info("pass");
+        } else log.info("fail");
+
+        for (WebElement row : allRows) {
+            List<WebElement> columns = row.findElements(By.tagName("td"));
+            WebElement thirdColumn = columns.get(3);
+            log.info(thirdColumn.getText());
+            assertEquals(thirdColumn.getText(), "4");
+        }
     }
 }
