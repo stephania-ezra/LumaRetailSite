@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FruitsArrayTest {
@@ -60,5 +61,26 @@ public class FruitsArrayTest {
         //size of the list
         int sizeAfterRemoval = list.size();
         log.info("Size :{}", sizeAfterRemoval);
+    }
+
+    @Test
+    public void listSorting() {
+
+        List<String> list = new ArrayList<String>();
+        list.add("Cherry");
+        list.add("DragonFruit");
+        list.add("Plums");
+        list.add("Cherry");
+        list.add("Pomegranate");
+        list.add("Chickoo");
+        list.add("Banana");
+        list.add("Dates");
+        list.add("Apple");
+        
+//sort a list by using Collections.sort() function
+        Collections.sort(list);
+        for (String eachFruit : list) {
+            log.info(eachFruit);
+        }
     }
 }
