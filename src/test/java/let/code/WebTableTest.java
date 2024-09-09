@@ -95,6 +95,7 @@ public class WebTableTest {
                 WebElement input = rows.get(3).findElement(By.tagName("input"));
                 input.click();
                 break;
+
             }
         }
     }
