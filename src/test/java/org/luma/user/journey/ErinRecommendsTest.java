@@ -22,7 +22,7 @@ import static org.testng.Assert.assertEquals;
 
 @Listeners({CustomListener.class})
 public class ErinRecommendsTest {
-    private final Logger log = LogManager.getLogger(MensDealsTest.class);
+    private final Logger log = LogManager.getLogger(ErinRecommendsTest.class);
     private final BaseUtilTest but = new BaseUtilTest();
     WebDriver driver = new ChromeDriver();
 

@@ -14,9 +14,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 @Listeners({CustomListener.class})
 public class ContactUsFormTest {
@@ -24,6 +24,7 @@ public class ContactUsFormTest {
     public final Logger log = LogManager.getLogger(ContactUsFormTest.class);
     public WebDriver driver = new ChromeDriver();
     BaseUtilTest but = new BaseUtilTest();
+    SoftAssert softAssert = new SoftAssert();
 
     @BeforeClass
     public void setDriver(ITestContext context) {
@@ -136,7 +137,8 @@ public class ContactUsFormTest {
                 .xpath("//*[@id=\"contact-page\"]/div[2]/div[1]/div/div[2]"));
 
         //assertEquals(successMessageElement.getText(), "'Success! Your details have been submitted successfully.'");
-        assertTrue(successMessageElement.isDisplayed());
+        softAssert.assertFalse(successMessageElement.isDisplayed());
+        softAssert.assertAll();
     }
 
     @Test(priority = 11)
@@ -147,7 +149,8 @@ public class ContactUsFormTest {
         WebElement homeButtonElement = driver.findElement(By.cssSelector("#form-section > a > span"));
         homeButtonElement.click();
 
-        assertEquals(driver.getTitle(), "Automation Exercise");
+        softAssert.assertEquals(driver.getTitle(), "Automation Exercise1");
+        softAssert.assertAll();
     }
 }
 

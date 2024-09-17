@@ -16,6 +16,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class BaseUtilTest {
 
@@ -102,16 +104,21 @@ public class BaseUtilTest {
      * @param fileName fileName (TestClassName + TestMethodName + .jpg)
      */
     public void takeScreenShot(WebDriver driver, String fileName) {
+        // adding subfolder
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String screenshotSubFolderName = myDateObj.format(myFormatObj);
+
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         File memoryFile = screenshot.getScreenshotAs(OutputType.FILE);
         try {
             Path fromFilePath = memoryFile.toPath();
-            Path screenshots = Paths.get("screenshots");
+            Path screenshots = Paths.get("screenshots", screenshotSubFolderName);
 
             if (!Files.exists(screenshots))
                 Files.createDirectory(screenshots);
 
-            Path toPath = Paths.get("screenshots", fileName);
+            Path toPath = Paths.get(String.valueOf(screenshots), fileName);
             Files.copy(fromFilePath, toPath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new RuntimeException(e);

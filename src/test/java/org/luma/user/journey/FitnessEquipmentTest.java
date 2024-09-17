@@ -17,7 +17,7 @@ import java.util.List;
 
 @Listeners({CustomListener.class})
 public class FitnessEquipmentTest extends LumaLoginTest {
-    private final Logger log = LogManager.getLogger(MensDealsTest.class);
+    private final Logger log = LogManager.getLogger(FitnessEquipmentTest.class);
     private final BaseUtilTest but = new BaseUtilTest();
 
     @BeforeClass
