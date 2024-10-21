@@ -40,7 +40,7 @@ public class WishlistTest extends LumaLoginTest {
         WebElement myWishList = driver
                 .findElement(By.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[2]/a"));
         myWishList.click();
-        
+
         try {
             WebElement profileItemCount = driver.findElement(By
                     .xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/div/ul/li[2]/a/span"));

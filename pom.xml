@@ -24,7 +24,10 @@
         <version>3.3.1</version>
         <configuration>
           <suiteXmlFiles>
-            <file>src/test/resources/testng-regression.xml</file>
+<!--            <file>src/test/resources/testng-regression.xml</file>-->
+<!--            <file>src/test/resources/OrangeHrmTesting.xml</file>-->
+<!--            <file>src/test/resources/AnnotationsTesting.xml</file>-->
+            <file>src/test/resources/OrangeHRMParameterTesting.xml</file>-->
           </suiteXmlFiles>
         </configuration>
       </plugin>
