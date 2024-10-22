@@ -18,9 +18,9 @@ import org.testng.annotations.Test;
 
 public class OrangeHrmTest extends BaseUtilTest {
 
-    public final Logger Log = LogManager.getLogger(OrangeHrmTest.class);
+    private final Logger Log = LogManager.getLogger(OrangeHrmTest.class);
+    private final BaseUtilTest but = new BaseUtilTest();
     public WebDriver driver = new ChromeDriver();
-    public BaseUtilTest but = new BaseUtilTest();
 
     @BeforeClass
     public void setDriver(ITestContext context) {

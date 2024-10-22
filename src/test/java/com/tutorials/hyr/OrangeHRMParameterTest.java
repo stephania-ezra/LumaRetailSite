@@ -15,6 +15,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 @Listeners({CustomListener.class})
@@ -57,16 +58,17 @@ public class OrangeHRMParameterTest extends BaseUtilTest {
     }
 
     @Test(priority = 1)
-    public void EnterLoginDetails() {
+    @Parameters({"username", "password"})
+    public void EnterLoginDetails(String username, @Optional("admin123") String password) {
         WebElement userNameElement = driver.findElement(
                 By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form" +
                         "/div[1]/div/div[2]/input"));
-        userNameElement.sendKeys("Admin");
+        userNameElement.sendKeys(username);
 
         WebElement passwordElement = driver.findElement(By
                 .xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form" +
                         "/div[2]/div/div[2]/input"));
-        passwordElement.sendKeys("admin123");
+        passwordElement.sendKeys(password);
 
         WebElement authLoginElement = driver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/div/div[1]/" +
                 "div/div[2]/div[2]/form/div[3]/button"));
@@ -88,10 +90,13 @@ public class OrangeHRMParameterTest extends BaseUtilTest {
 
     @Test(priority = 3)
     public void NavigateToMyInfo() {
-        //Clicking MyInfo Tab
 
+        assertEquals("https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"
+                , driver.getCurrentUrl());
+        but.stopTheFlow(5);
+        //Clicking MyInfo Tab
         WebElement myInfoElement = driver.findElement(By.
-                xpath("//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a"));
+                xpath("//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li[6]"));
         myInfoElement.click();
         log.info("MyInfo Tab is Clicked");
         but.stopTheFlow(3);
@@ -102,7 +107,7 @@ public class OrangeHRMParameterTest extends BaseUtilTest {
         //Verifying the display of My Information details
 
         WebElement verifyMyInfoElement = driver.findElement(By
-                .xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div/div"));
+                .xpath("//*[@id=\"app\"]/div[1]/div[2]"));
         String verificationMyInfo = verifyMyInfoElement.getText();
         if (verificationMyInfo != null) {
             log.info("Displaying My Information details\t" + "verificationInfo: {} ",

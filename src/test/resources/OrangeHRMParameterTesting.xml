@@ -3,8 +3,10 @@
 
 <suite name ="OrangeHRMSuite">
     <!--parameter passing -->
-    <parameter name="browserName" value="Edge" />
+    <parameter name="browserName" value="Chrome" />
     <parameter name="url" value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"/>
+    <parameter name="username" value="Admin"/>
+    <parameter name="password" value="admin123" />
     <test name="OrangeHRMLogin">
         <classes>
             <class name="com.tutorials.hyr.OrangeHRMParameterTest">
@@ -17,11 +19,11 @@
         </classes>
     </test>
 
-    <test name="OrangeHRMMyInfo">
-        <classes>
+    <test name="OrangeHRMMyInfo">        <classes>
             <class name="com.tutorials.hyr.OrangeHRMParameterTest">
                 <methods>
                     <include name="LaunchApp"/>
+                    <include name="EnterLoginDetails"/>
                     <include name="NavigateToMyInfo"/>
                     <include name="VerifyMyInfo"/>
                 </methods>
