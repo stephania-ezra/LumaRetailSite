@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="EnableTestSuite">
+<!--    Parameter defined at suite level-->
+    <test name="OrangeHRMLogin" enabled="false">
+        <parameter name="url" value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" />
+        <parameter name="username" value="Admin" />
+        <parameter name="password" value="admin123" />
+        <classes>
+            <class name="com.tutorials.hyr.OrangeHRMEnableTest">
+                <methods>
+                    <include name="LaunchApp"/>
+                    <include name="EnterLoginDetails"/>
+                    <include name="VerifyLogin"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="OrangeHRMMyInfo" enabled="false">
+        <parameter name="url" value="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login" />
+        <parameter name="username" value="Admin" />
+        <parameter name="password" value="admin123" />
+        <classes>
+            <class name="com.tutorials.hyr.OrangeHRMEnableTest">
+                <methods>
+                    <include name="LaunchApp"/>
+                    <include name="EnterLoginDetails"/>
+                    <include name="NavigateToMyInfo"/>
+                    <include name="VerifyMyInfo"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="TestGoogleSearch" enabled="true">
+        <parameter name="googleUrl" value="https://www.google.co.in/?gws_rd=cr" />
+        <parameter name="tutorialName" value="HYR Tutorials" />
+        <classes>
+            <class name="com.tutorials.hyr.OrangeHRMEnableTest">
+            <methods>
+                <include name="TestGoogle" />
+            </methods>
+        </class>
+        </classes>
+    </test>
+
+    <test name ="TestFacebookSearch" enabled="false">
+        <parameter name="FacebookUrl" value="https://www.facebook.com/login/" />
+        <parameter name="tutorialName" value="HYR Tutorials" />
+        <classes>
+            <class name="com.tutorials.hyr.OrangeHRMEnableTest">
+                <methods>
+                    <include name="TestFacebook" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

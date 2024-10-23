@@ -8,6 +8,7 @@
     <parameter name="username" value="Admin"/>
     <parameter name="password" value="admin123" />
     <test name="OrangeHRMLogin">
+        <parameter name="browserName" value="Edge" />
         <classes>
             <class name="com.tutorials.hyr.OrangeHRMParameterTest">
                 <methods>
@@ -19,7 +20,9 @@
         </classes>
     </test>
 
-    <test name="OrangeHRMMyInfo">        <classes>
+    <test name="OrangeHRMMyInfo">
+        <parameter name="browserName" value="Edge" />
+        <classes>
             <class name="com.tutorials.hyr.OrangeHRMParameterTest">
                 <methods>
                     <include name="LaunchApp"/>
