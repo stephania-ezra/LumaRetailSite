@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="GroupTestsSuite">
+    <test name="GroupTest">
+        <groups>
+            <define name="dailyBuild">
+                <include name="sanity" />
+            </define>
+            <define name="weeklyBuild">
+                <include name="sanity" />
+                <include name="smoke" />
+                <include name="regression" />
+                <include name="functional" />
+            </define>
+            <run>
+                <include name="weeklyBuild" />
+            </run>
+        </groups>
+        <classes>
+            <class name="com.GroupingTest.GroupFirstTest" />
+            <class name="com.GroupingTest.GroupSecondTest" />
+        </classes>
+    </test>
+</suite>
