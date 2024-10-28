@@ -28,7 +28,8 @@
 <!--            <file>src/test/resources/OrangeHrmTesting.xml</file>-->
 <!--            <file>src/test/resources/AnnotationsTesting.xml</file>-->
 <!--            <file>src/test/resources/OrangeHRMParameterTesting.xml</file>&ndash;&gt;-->
-            <file>src/test/resources/OrangeHRMEnableTest.xml</file>
+<!--            <file>src/test/resources/OrangeHRMEnableTest.xml</file>-->
+            <file>src/test/resources/GroupsDependency.xml</file>
           </suiteXmlFiles>
         </configuration>
       </plugin>
