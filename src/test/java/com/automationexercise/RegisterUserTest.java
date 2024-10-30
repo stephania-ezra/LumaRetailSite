@@ -172,5 +172,6 @@ public class RegisterUserTest {
         // click continue button
         WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div/a"));
         continueButton.click();
+        but.stopTheFlow(3);
     }
 }
