@@ -31,11 +31,16 @@ public class JetPetDataProviderTest extends BaseUtilTest {
     }
 
     @Test(dataProvider = "JetPetLoginData")
-    public void JetPetCreateUser(String UserId, String NewPassword, String RepeatPassword
+    /*public void JetPetCreateUser(String UserId, String NewPassword, String RepeatPassword
             , String FirstName, String LastName, String Email
             , String Phone, String Address1, String Address2
             , String City, String State, String Zip
-            , String Country, String Language, String Category) {
+            , String Country, String Language, String Category) {*/
+
+    //instead of passing multiple string values in parameter , by passing String[]
+    //as parameter and calling the values String[0] like that is much nice :)
+    public void JetPetCreateUser(String[] s) {
+
 
         log.info("Step1 : Launching URL");
         driver.manage().window().maximize();
@@ -59,15 +64,15 @@ public class JetPetDataProviderTest extends BaseUtilTest {
         log.info("Step 5 : Displaying User Information Details");
 
         WebElement UserIdElement = driver.findElement(By.name("username"));
-        UserIdElement.sendKeys(UserId);
+        UserIdElement.sendKeys(s[0]);
 
         WebElement NewPasswordElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[1]/tbody/tr[2]/td[2]/input"));
-        NewPasswordElement.sendKeys(NewPassword);
+        NewPasswordElement.sendKeys(s[1]);
 
         WebElement RepeatPasswordElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[1]/tbody/tr[3]/td[2]/input"));
-        RepeatPasswordElement.sendKeys(RepeatPassword);
+        RepeatPasswordElement.sendKeys(s[2]);
 
         log.info("Step 5: Account Information");
         WebElement AccountInformationTitleElement = driver.findElement(By
@@ -80,54 +85,54 @@ public class JetPetDataProviderTest extends BaseUtilTest {
 
         WebElement FirstNameElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[1]/td[2]/input"));
-        FirstNameElement.sendKeys(FirstName);
+        FirstNameElement.sendKeys(s[3]);
 
         WebElement LastNameElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[2]/td[2]/input"));
-        LastNameElement.sendKeys(LastName);
+        LastNameElement.sendKeys(s[4]);
 
         WebElement EmailElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[3]/td[2]/input"));
-        EmailElement.sendKeys(Email);
+        EmailElement.sendKeys(s[5]);
 
         WebElement PhoneElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[4]/td[2]/input"));
-        PhoneElement.sendKeys(Phone);
+        PhoneElement.sendKeys(s[6]);
 
         WebElement Address1Element = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[5]/td[2]/input"));
-        Address1Element.sendKeys(Address1);
+        Address1Element.sendKeys(s[7]);
 
         WebElement Address2Element = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[6]/td[2]/input"));
-        Address2Element.sendKeys(Address2);
+        Address2Element.sendKeys(s[8]);
 
         WebElement CityElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[7]/td[2]/input"));
-        CityElement.sendKeys(City);
+        CityElement.sendKeys(s[9]);
 
         WebElement StateElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[8]/td[2]/input"));
-        StateElement.sendKeys(State);
+        StateElement.sendKeys(s[10]);
 
         WebElement ZipElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[9]/td[2]/input"));
-        ZipElement.sendKeys(Zip);
+        ZipElement.sendKeys(s[11]);
 
         WebElement CountryElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[10]/td[2]/input"));
-        CountryElement.sendKeys(Country);
+        CountryElement.sendKeys(s[12]);
 
         but.stopTheFlow(3);
 
         log.info("Step 7: Displaying Profile Information");
         Select language = new Select(driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[1]/td[2]/select")));
-        language.selectByValue(Language);
+        language.selectByValue(s[13]);
 
         Select category = new Select(driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[2]/td[2]/select")));
-        category.selectByValue(Category);
+        category.selectByValue(s[14]);
 
         WebElement EnableMyListElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[3]/td[2]/input"));
@@ -144,9 +149,11 @@ public class JetPetDataProviderTest extends BaseUtilTest {
         but.stopTheFlow(3);
     }
 
+    //checking with data type as String
+    //previously worked for Object Data type
     @DataProvider
-    public Object[][] JetPetLoginData() {
-        Object[][] data = new Object[1][15];
+    public String[][] JetPetLoginData() {
+        String[][] data = new String[1][15];
         data[0][0] = "Vincent";
         data[0][1] = "V@21*89";
         data[0][2] = "V@21*89";
