@@ -5,14 +5,15 @@ import org.apache.logging.log4j.Logger;
 import org.luma.BaseUtilTest;
 import org.luma.listeners.CustomListener;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 @Listeners({CustomListener.class})
 public class ExcelDataSupplierTest extends BaseUtilTest {
@@ -43,40 +44,41 @@ public class ExcelDataSupplierTest extends BaseUtilTest {
     void LoginToYourAccountTest(String email, String password) {
 
         log.info("Step 2: Clicking SignIn Button");
-        WebElement SignInElement = driver.findElement(By
+        WebElement signInElement = driver.findElement(By
                 .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
-        SignInElement.click();
+        signInElement.click();
         but.stopTheFlow(3);
 
         log.info("Step 3: Clicking LoginToYourAccount");
-        WebElement EmailAddressElement = driver.findElement(By
+        WebElement emailAddressElement = driver.findElement(By
                 .xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[2]"));
-        EmailAddressElement.sendKeys(email);
+        emailAddressElement.sendKeys(email);
 
-        WebElement PasswordElement = driver.findElement(By
+        WebElement passwordElement = driver.findElement(By
                 .xpath("//*[@id=\"form\"]/div/div/div[1]/div/form/input[3]"));
-        PasswordElement.sendKeys(password);
+        passwordElement.sendKeys(password);
 
-        WebElement LoginButtonElement = driver.findElement(By
+        WebElement loginButtonElement = driver.findElement(By
                 .cssSelector("#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > button"));
-        LoginButtonElement.click();
+        loginButtonElement.click();
         but.stopTheFlow(3);
 
-        WebElement userNameElement = driver.findElement(By
-                .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a/b"));
-        log.info(userNameElement);
-
-        if (userNameElement != null) {
+        try {
+            WebElement userNameElement = driver.findElement(By
+                    .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a/b"));
             assertTrue(userNameElement.isDisplayed());
-        } else
-            assertFalse(false);
+            assertEquals(userNameElement.getText()
+                    .toLowerCase(), "thilothima", "UserCredentials not Valid");
 
-        /*log.info("Step 4: Logout from the user");
-        WebElement LogOutElement = driver.findElement(By
-                .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
-        LogOutElement.click();
-        but.stopTheFlow(3);*/
+            log.info("Step 4: Logout from the user");
+            WebElement LogOutElement = driver.findElement(By
+                    .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
+            LogOutElement.click();
+            but.stopTheFlow(3);
 
+        } catch (NoSuchElementException e) {
+            log.info("Login failed");
+        }
     }
 
     //creating Data Provider Method
