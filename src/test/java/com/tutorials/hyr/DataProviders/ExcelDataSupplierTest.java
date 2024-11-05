@@ -1,4 +1,4 @@
-package com.tutorials.hyr;
+package com.tutorials.hyr.DataProviders;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
