@@ -5,40 +5,20 @@ import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.luma.BaseUtilTest;
-import org.luma.listeners.CustomListener;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
-@Listeners({CustomListener.class})
-public class AutomationExerciseDPTest extends BaseUtilTest {
+public class AutomationExerciseDataProvider {
 
-    public final WebDriver driver = new ChromeDriver();
-    public final Logger log = LogManager.getLogger(AutomationExerciseDPTest.class);
-    private final BaseUtilTest but = new BaseUtilTest();
-
-    @BeforeClass
-    public void setDriver(ITestContext context) {
-        log.info("SETTING CONTEXT");
-        context.setAttribute("WebDriver", driver);
-    }
-
-    @AfterClass
-    public void tearDown() {
-        but.tearDown(driver);
-    }
-
-    @DataProvider
-    public String[][] AutomationTestDP() throws IOException {
+    private final Logger log = LogManager.getLogger(AutomationExerciseDataProvider.class);
+    
+    @DataProvider(parallel = true)
+    public String[][] automationTestDP() throws IOException {
         File excelFile = new File("src/test/resources/ExcelDataAutomationExercise.xlsx");
         FileInputStream fis = new FileInputStream(excelFile);
         XSSFWorkbook workbook = new XSSFWorkbook(fis);
@@ -69,8 +49,14 @@ public class AutomationExerciseDPTest extends BaseUtilTest {
         fis.close();
 
         return data;
-        /*for (String[] dataArray : data) {
+    }
+
+
+    @Test
+    void test1() throws IOException {
+        String[][] data = automationTestDP();
+        for (String[] dataArray : data) {
             log.info(Arrays.toString(dataArray));
-        }*/
+        }
     }
 }

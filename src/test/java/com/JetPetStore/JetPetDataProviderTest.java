@@ -2,35 +2,20 @@ package com.JetPetStore;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.luma.BaseUtilTest;
-import org.luma.listeners.CustomListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-@Listeners({CustomListener.class})
-public class JetPetDataProviderTest extends BaseUtilTest {
-    private final BaseUtilTest but = new BaseUtilTest();
+public class JetPetDataProviderTest {
+
     private final Logger log = LogManager.getLogger(JetPetDataProviderTest.class);
-    public WebDriver driver = new ChromeDriver();
 
-    @BeforeClass
-    public void setDriver(ITestContext context) {
-        log.info("SETTING CONTEXT");
-        context.setAttribute("WebDriver", driver);
-    }
-
-    @AfterClass
-    public void tearDown() {
-        but.tearDown(driver);
-    }
-
-    @Test(dataProvider = "JetPetLoginData")
+    @Test(dataProvider = "jetPetLoginData")
     /*public void JetPetCreateUser(String UserId, String NewPassword, String RepeatPassword
             , String FirstName, String LastName, String Email
             , String Phone, String Address1, String Address2
@@ -39,10 +24,14 @@ public class JetPetDataProviderTest extends BaseUtilTest {
 
     //instead of passing multiple string values in parameter , by passing String[]
     //as parameter and calling the values String[0] like that is much nice :)
-    public void JetPetCreateUser(String[] s) {
-
+    public void jetPetCreateUser(String[] s) {
 
         log.info("Step1 : Launching URL");
+        WebDriver driver = new ChromeDriver();
+
+        //Create WebDriver for the Browser(chrome) here .like above
+        //because while running parallel the browser should be created each time
+
         driver.manage().window().maximize();
         driver.get("https://petstore.octoperf.com/actions/Catalog.action");
 
@@ -53,7 +42,6 @@ public class JetPetDataProviderTest extends BaseUtilTest {
         log.info("Step 3 : Clicking Register Now");
         WebElement RegisterNowElement = driver.findElement(By.xpath("//*[@id=\"Catalog\"]/a"));
         RegisterNowElement.click();
-        but.stopTheFlow(3);
 
         log.info("Step 4: User Information");
         WebElement UserInformationTitleElement = driver.findElement(By
@@ -62,7 +50,6 @@ public class JetPetDataProviderTest extends BaseUtilTest {
         log.info("User Information:{}", UserInformationTitleElement.getText());
 
         log.info("Step 5 : Displaying User Information Details");
-
         WebElement UserIdElement = driver.findElement(By.name("username"));
         UserIdElement.sendKeys(s[0]);
 
@@ -81,8 +68,6 @@ public class JetPetDataProviderTest extends BaseUtilTest {
         log.info("Account Information Title :{}", AccountInformationTitleElement.getText());
 
         log.info("Step 6 : Displaying Account Information Details");
-        but.stopTheFlow(3);
-
         WebElement FirstNameElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[1]/td[2]/input"));
         FirstNameElement.sendKeys(s[3]);
@@ -123,8 +108,6 @@ public class JetPetDataProviderTest extends BaseUtilTest {
                 .xpath("//*[@id=\"Catalog\"]/form/table[2]/tbody/tr[10]/td[2]/input"));
         CountryElement.sendKeys(s[12]);
 
-        but.stopTheFlow(3);
-
         log.info("Step 7: Displaying Profile Information");
         Select language = new Select(driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[1]/td[2]/select")));
@@ -146,16 +129,17 @@ public class JetPetDataProviderTest extends BaseUtilTest {
                 .cssSelector("#Catalog > form > input[type=submit]"));
         SaveAccountInformationElement.click();
 
-        but.stopTheFlow(3);
+        driver.close();
     }
 
     //checking with data type as String
     //previously worked for Object Data type
-    @DataProvider
-    public String[][] JetPetLoginData() {
-        String[][] data = new String[1][15];
-        data[0][0] = "Vincent";
-        data[0][1] = "V@21*89";
+
+    @DataProvider(parallel = true)
+    public String[][] jetPetLoginData() {
+        String[][] data = new String[2][15];
+        data[0][0] = "JohnAbraham";
+        data[0][1] = "A@21*89";
         data[0][2] = "V@21*89";
         data[0][3] = "Vincent";
         data[0][4] = "Kumar";
@@ -169,6 +153,23 @@ public class JetPetDataProviderTest extends BaseUtilTest {
         data[0][12] = "India";
         data[0][13] = "japanese";
         data[0][14] = "DOGS";
+
+        data[1][0] = "Michael";
+        data[1][1] = "MW@21*89";
+        data[1][2] = "OP@21*89";
+        data[1][3] = "Jacob";
+        data[1][4] = "Job";
+        data[1][5] = "Jac@gmail.com";
+        data[1][6] = "2468013579";
+        data[1][7] = "DubaiKurukuSandu";
+        data[1][8] = "DubaiMainRoad";
+        data[1][9] = "Dubai";
+        data[1][10] = "TamilNadu";
+        data[1][11] = "733100";
+        data[1][12] = "India";
+        data[1][13] = "japanese";
+        data[1][14] = "DOGS";
+
         return data;
     }
 }

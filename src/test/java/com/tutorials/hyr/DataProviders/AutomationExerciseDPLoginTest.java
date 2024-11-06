@@ -9,9 +9,6 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -20,34 +17,24 @@ import java.util.Objects;
 @Listeners({CustomListener.class})
 public class AutomationExerciseDPLoginTest extends BaseUtilTest {
 
-    public final WebDriver driver = new ChromeDriver();
     private final Logger log = LogManager.getLogger(AutomationExerciseDPLoginTest.class);
-    private final BaseUtilTest but = new BaseUtilTest();
 
-    @BeforeClass
-    public void setDriver(ITestContext context) {
-        log.info("SETTING CONTEXT");
-        context.setAttribute("WebDriver", driver);
-    }
-
-    @AfterClass
-    public void tearDown() {
-        but.tearDown(driver);
-    }
-
-
-    @Test(dataProvider = "AutomationTestDP", dataProviderClass = AutomationExerciseDPTest.class)
-    public void LoginToYourAccountTest(String email, String password) {
+    @Test(dataProvider = "automationTestDP", dataProviderClass = AutomationExerciseDataProvider.class)
+    public void loginToYourAccountTest(String email, String password) {
 
         log.info("Step 1: Launching AutomationExercise site");
+        WebDriver driver = new ChromeDriver();
+        
+        //Create WebDriver for the Browser(chrome) here .like above
+        //because while running parallel the browser should be created each time
+
         driver.manage().window().maximize();
         driver.get("https://www.automationexercise.com/");
 
         log.info("Step 2: Clicking SignIn Button");
-        WebElement signInElement = driver.findElement(By
+        WebElement signUpElement = driver.findElement(By
                 .xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a"));
-        signInElement.click();
-
+        signUpElement.click();
 
         log.info("Step 3: Clicking LoginToYourAccount");
         WebElement emailAddressElement = driver.findElement(By
@@ -72,5 +59,7 @@ public class AutomationExerciseDPLoginTest extends BaseUtilTest {
         } catch (NoSuchElementException e) {
             log.info("");
         }
+
+        driver.close();
     }
 }
