@@ -13,6 +13,7 @@ public class TestExcelDataSupplier {
 
     private static final String COMMA_DELIMITER = ",";
     public final Logger log = LogManager.getLogger(TestExcelDataSupplier.class);
+    //String[][] array = new String[3][3];
 
     //data provider
     @DataProvider
@@ -34,7 +35,8 @@ public class TestExcelDataSupplier {
         }
     }
 
-    @Test
+    //@Test
+    @Test(dataProvider = "getLoginDetails")
     void readNewCsv() {
         try {
             String[][] array = getLoginDetails();
