@@ -3,79 +3,65 @@ package com.tutorials.hyr.DataProviders;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.luma.BaseUtilTest;
-import org.luma.listeners.CustomListener;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.annotations.*;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-@Listeners({CustomListener.class})
+
 public class LearningDataProviderTest extends BaseUtilTest {
+
     private final Logger log = LogManager.getLogger(LearningDataProviderTest.class);
     private final BaseUtilTest but = new BaseUtilTest();
-    public WebDriver driver = new ChromeDriver();
 
-    @BeforeClass
-    public void setDriver(ITestContext context) {
-        log.info("SETTING CONTEXT");
-        context.setAttribute("WebDriver", driver);
-    }
+    @Test(dataProvider = "loginDetails")
+    public void getLoginDetails(String username, String password) {
 
-    @AfterClass
-    public void tearDown() {
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        but.stopTheFlow(5);
+
+        WebElement userNameElement = driver.findElement(By
+                .xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[1]/div/div[2]/input"));
+        userNameElement.sendKeys(username);
+        but.stopTheFlow(3);
+
+        WebElement passwordElement = driver.findElement(By
+                .xpath("//*[@id=\"app\"]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[2]/div/div[2]/input"));
+        passwordElement.sendKeys(password);
+        but.stopTheFlow(3);
+
+        WebElement loginElement = driver.findElement(By.cssSelector("#app > div.orangehrm-login-layout > div >" +
+                " div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form >" +
+                " div.oxd-form-actions.orangehrm-login-action > button"));
+        loginElement.click();
+        but.stopTheFlow(3);
         but.tearDown(driver);
     }
 
-
-    @Test(priority = 0)
-    public void LaunchBrowser() {
-
-        log.info("LAUNCHING URL");
-        driver.manage().window().maximize();
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
-        but.stopTheFlow(3);
-    }
-
-    @Test(priority = 1, dataProvider = "loginDataDetails")
-    public void GetLoginDetails(String Username, String Password) {
-
-        log.info("GETTING LOGIN DETAILS");
-        WebElement UsernameElement = driver.findElement(By.name("username"));
-        UsernameElement.sendKeys("Username");
-
-        WebElement PasswordElement = driver.findElement(By.name("password"));
-        PasswordElement.sendKeys("Password");
-
-        WebElement LoginElement = driver.findElement(By.cssSelector("#app > div.orangehrm-login-layout > div >" +
-                " div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > form >" +
-                " div.oxd-form-actions.orangehrm-login-action > button"));
-        LoginElement.click();
-        but.stopTheFlow(7);
-    }
-
-    @Test(priority = 2)
-    public void CheckLoggedInUser() {
-
-        log.info("CHECKING LOGGEDIN USER");
-        WebElement LoggedInUserElement = driver.findElement(By.xpath("/html/body/div/div[1]/div[1]/" +
-                "header/div[1]/div[3]/ul/li/span/p"));
-        Assert.assertTrue(LoggedInUserElement.isDisplayed());
-        log.info("User name: {}", LoggedInUserElement.getText());
-        but.stopTheFlow(5);
-    }
-
     //creating Data Provider Method
-    @DataProvider(name = "loginDataDetails")
-    public Object[][] loginDetails() {
-        Object[][] data = new Object[2][2];
+    @DataProvider(parallel = true)
+    public String[][] loginDetails() {
+        //pls check the column values while defining the size
+        //2 columns here so specify the column as 2
+        String[][] data = new String[5][2];
         data[0][0] = "Admin";
         data[0][1] = "admin123";
 
-        data[1][0] = "Admin";
+        data[1][0] = "stella";
         data[1][1] = "admin111";
+
+        data[2][0] = "Vincy";
+        data[2][1] = "Stella123";
+
+        data[3][0] = "bert";
+        data[3][1] = "beauty12";
+
+        data[4][0] = "iopwer";
+        data[4][1] = "dirty12";
 
         return data;
     }
