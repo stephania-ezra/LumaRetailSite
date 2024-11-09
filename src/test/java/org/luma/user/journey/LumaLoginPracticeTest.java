@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 public class LumaLoginPracticeTest {
 
     public final Logger log = LogManager.getLogger(LumaLoginPracticeTest.class);
-    public WebDriver driver = new ChromeDriver();
+
 
     @Test(dataProvider = "getLoginDetails", dataProviderClass = TestExcelDataSupplier.class)
     public void lumaLogin(String emailId, String password) {
@@ -23,6 +23,7 @@ public class LumaLoginPracticeTest {
         log.debug("emailId {} ", emailId);
         log.debug("password {} ", password);
 
+        WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://magento.softwaretestingboard.com/");
 

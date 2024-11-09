@@ -36,7 +36,7 @@ public class TestExcelDataSupplier {
     }
 
     //@Test
-    @Test(dataProvider = "getLoginDetails")
+    @Test
     void readNewCsv() {
         try {
             String[][] array = getLoginDetails();
