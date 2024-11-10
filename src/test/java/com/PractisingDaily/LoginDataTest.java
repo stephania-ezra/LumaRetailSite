@@ -31,7 +31,7 @@ public class LoginDataTest extends BaseUtilTest {
         but.tearDown(driver);
     }
 
-    @Test(priority = 0)
+    @Test
     public void launchUrl() {
         log.info("Step 1 : Launching the Website");
         driver.get("https://petstore.octoperf.com/actions/Catalog.action");
