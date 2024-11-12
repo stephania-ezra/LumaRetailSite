@@ -14,9 +14,9 @@ import org.testng.annotations.*;
 import java.util.List;
 
 @Listeners({CustomListener.class})
-public class LoginDataTest extends BaseUtilTest {
+public class PetStoreLoginDataTest extends BaseUtilTest {
 
-    public Logger log = LogManager.getLogger(LoginDataTest.class);
+    public Logger log = LogManager.getLogger(PetStoreLoginDataTest.class);
     public WebDriver driver = new ChromeDriver();
     public BaseUtilTest but = new BaseUtilTest();
 

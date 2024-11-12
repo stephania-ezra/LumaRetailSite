@@ -1,5 +1,6 @@
-package com.PractisingDaily;
+package com.PractisingDaily.DataProvider;
 
+import com.PractisingDaily.LoginDPTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
