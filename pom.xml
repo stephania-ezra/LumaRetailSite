@@ -31,7 +31,6 @@
 <!--            <file>src/test/resources/OrangeHRMEnableTest.xml</file>-->
            <!-- <file>src/test/resources/GroupsDependency.xml</file>-->
             <!--<file>src/test/resources/OrangeHRMParallelTest.xml</file>-->
-            <file>src/test/resources/ParallelTest.xml</file>
           </suiteXmlFiles>
         </configuration>
       </plugin>
