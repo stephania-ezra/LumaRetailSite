@@ -32,20 +32,20 @@ public class ReturnTypeDataProviderTest extends BaseUtilTest {
 
     /*@Test(dataProvider = "TwoDimensionalArrayData")
     public void ReturnTypeTest(String[] s) {
-        log.info("String Two dimensional array Return Type DataProvider");
+        log.info("String Two dimensional array Return Type dataProvider");
         log.info(s[0] + "," + s[1]);
     }*/
 
     //u can also directly specify the parameters in Test Method
     /*@Test(dataProvider = "TwoDimensionalArrayData")
     public void ReturnTypeTest(String actress, String movies) {
-        log.info("String Two dimensional array Return Type DataProvider");
+        log.info("String Two dimensional array Return Type dataProvider");
         log.info(actress + "," + movies);
     }*/
 
     @Test(dataProvider = "JaggedArrayCheck")
     public void ReturnTypeTest(Object[] s) {
-        log.info("Jagged array Return Type DataProvider");
+        log.info("Jagged array Return Type dataProvider");
         for (Object object : s) {
             log.info(object);
         }
@@ -55,7 +55,7 @@ public class ReturnTypeDataProviderTest extends BaseUtilTest {
     //when passing many values in the array
     /*@Test(dataProvider = "SingleDimensionalArrayCheck")
     public void ReturnTypeTest(String[] s) {
-        log.info("String Two dimensional array Return Type DataProvider");
+        log.info("String Two dimensional array Return Type dataProvider");
         log.info(s[0] + "," + s[1] + "," +
                 s[2] + "," + s[3] + "," +
                 s[4] + "," + s[5]);
@@ -125,7 +125,7 @@ public class ReturnTypeDataProviderTest extends BaseUtilTest {
 
     //passing many values in the array
     //Using Jagged Array (each rows will have different number of columns)
-   /* @DataProvider
+   /* @dataProvider
     public String[][] JaggedArrayCheck() {
         String[][] movies = new String[][]{
                 {"Nayanthara", "50", "AR Rahman", "Aniruth", "Swetha Mohan", "Spb", "Chitra"},

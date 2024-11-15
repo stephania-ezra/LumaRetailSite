@@ -1,6 +1,6 @@
-package com.PractisingDaily.DataProvider;
+package com.practisingDaily.dataProvider;
 
-import com.PractisingDaily.SauceDemoExcelDataTest;
+import com.practisingDaily.SauceDemoExcelDataTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -53,7 +53,7 @@ public class SauceDemoBeginTest {
     }
 
     //indices concept
-    //@DataProvider(indices = {0, 2, 4, 6})
+    //@dataProvider(indices = {0, 2, 4, 6})
     @DataProvider(parallel = true)
     public Object[][] swagData() {
         Object[][] data = new Object[7][2];

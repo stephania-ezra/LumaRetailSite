@@ -3,7 +3,7 @@
 <suite name="SauceDemoTest" data-provider-thread-count="2">
     <test name="Sauce Parallel Test">
         <classes>
-            <class name="com.PractisingDaily.DataProvider.SauceDemoBeginTest" />
+            <class name="com.practisingDaily.dataProvider.SauceDemoBeginTest" />
         </classes>
     </test>
 </suite>

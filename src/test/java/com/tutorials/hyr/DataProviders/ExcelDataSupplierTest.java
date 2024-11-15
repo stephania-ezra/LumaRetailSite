@@ -1,6 +1,6 @@
 package com.tutorials.hyr.DataProviders;
 
-import com.PractisingDaily.LoginDPTest;
+import com.practisingDaily.LoginDPTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -63,7 +63,7 @@ public class ExcelDataSupplierTest {
     }
 
    /* //creating Data Provider Method
-    @DataProvider
+    @dataProvider
     public Object[][] loginDetails() {
         Object[][] data = new Object[2][2];
         data[0][0] = "collins.einstein@gmail.com";

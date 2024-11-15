@@ -1,4 +1,4 @@
-package com.PractisingDaily;
+package com.practisingDaily;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,12 +39,12 @@ public class LoginDPTest {
         }
         workbook.close();
         fis.close();
-        
+
         return data;
     }
 
 
-   /* @DataProvider(parallel = true)
+   /* @dataProvider(parallel = true)
     public Object[][] automationData() {
         Object[][] data = new Object[2][2];
         data[0][0] = "collins.einstein@gmail.com";

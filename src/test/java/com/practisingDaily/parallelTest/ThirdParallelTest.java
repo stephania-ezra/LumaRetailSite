@@ -1,4 +1,4 @@
-package com.PractisingDaily.ParallelTest;
+package com.practisingDaily.parallelTest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

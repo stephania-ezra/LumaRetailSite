@@ -17,8 +17,8 @@
             </run>
         </groups>
         <classes>
-            <class name="com.GroupingTest.GroupFirstTest" />
-            <class name="com.GroupingTest.GroupSecondTest" />
+            <class name="com.groupingTest.GroupFirstTest" />
+            <class name="com.groupingTest.GroupSecondTest" />
         </classes>
     </test>
 </suite>

@@ -1,4 +1,4 @@
-package com.PractisingDaily.DataProvider;
+package com.practisingDaily.dataProvider;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,8 +7,8 @@ import org.testng.annotations.DataProvider;
 public class ManyDataProvidersTest {
     public final Logger log = LogManager.getLogger("ManyDataProvidersTest.class");
 
-    //Too Many  DataProvider
-    //First DataProvider
+    //Too Many  dataProvider
+    //First dataProvider
     @DataProvider
     public Object[][] swagData1() {
         Object[][] data = new Object[7][2];
@@ -37,7 +37,7 @@ public class ManyDataProvidersTest {
         return data;
     }
 
-    //second DataProvider
+    //second dataProvider
 
     @DataProvider
     public Object[][] swagData2() {
@@ -67,7 +67,7 @@ public class ManyDataProvidersTest {
         return data;
     }
 
-    //Third DataProvider
+    //Third dataProvider
 
     @DataProvider
     public Object[][] swagData3() {

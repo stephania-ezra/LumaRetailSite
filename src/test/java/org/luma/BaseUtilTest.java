@@ -185,5 +185,6 @@ public class BaseUtilTest {
 
         //Performing the mouse hover action on the target element.
         action.moveToElement(element).perform();
+        stopTheFlow(3);
     }
 }

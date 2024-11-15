@@ -3,13 +3,13 @@
 <suite name="Parallel Test"  parallel="methods" thread-count="2">
     <test name="ParallelTest1" >
         <classes>
-            <class name="com.PractisingDaily.ParallelTest.FirstParallelTest" />
+            <class name="com.practisingDaily.parallelTest.FirstParallelTest" />
         </classes>
     </test>
 
     <test name="ParallelTest2">
         <classes>
-            <class name="com.PractisingDaily.ParallelTest.SecondParallelTest" />
+            <class name="com.practisingDaily.parallelTest.SecondParallelTest" />
         </classes>
     </test>
 </suite>
