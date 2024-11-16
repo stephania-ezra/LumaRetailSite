@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="ListenersSuitePracticeTest">
+
+    <listeners>
+        <listener class-name="org.luma.listeners.CustomListener" />
+    </listeners>
+
+    <test name="Test1">
+        <classes>
+            <class name="com.practisingDaily.screenShots.ScreenShotsTest">
+                <methods>
+                    <include name="googleTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Test2">
+        <classes>
+            <class name="com.practisingDaily.screenShots.ScreenShotsTest">
+                <methods>
+                    <include name="orangeHRMTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
