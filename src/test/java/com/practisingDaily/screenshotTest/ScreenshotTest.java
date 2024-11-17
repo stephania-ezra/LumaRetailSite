@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.IOException;
 
-public class HYRScreenshotTest {
+public class ScreenshotTest {
 
     public static void main(String[] args) throws IOException {
 
@@ -16,12 +16,12 @@ public class HYRScreenshotTest {
         driver.get("https://www.w3schools.com/");
 
         // take the screenshot of the w3Schools website
-        HYRUtils.CaptureScreenshot(driver, "Image2.jpg");
+        Utils.CaptureScreenshot(driver, "Image3.jpg");
         WebElement navigationElement = driver.findElement(By.id("navbtn_exercises"));
         navigationElement.click();
 
         //take the screenshot of Exercises Tab
-        HYRUtils.CaptureScreenshot(driver, "Image3.jpg");
+        Utils.CaptureScreenshot(driver, "Image4.jpg");
 
         /*TakesScreenshot ts = (TakesScreenshot) driver;
         File file = ts.getScreenshotAs(OutputType.FILE);
