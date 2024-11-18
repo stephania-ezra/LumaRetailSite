@@ -5,6 +5,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -25,9 +27,18 @@ public class BaseTest {
     }
 
     @AfterTest
-    public void teardown() {
+    public void teardown(ITestResult result) {
         //closing the selenium WebDriver
         driver.quit();
+    }
+
+    @AfterMethod
+    //Another method for capturing failed screenshots
+    // dependency Injection - ITestResult object
+    public void screenshotCapture(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            captureScreenShots(result.getTestContext().getName() + "_" + result.getMethod().getMethodName() + ".jpg");
+        }
     }
 
     public void captureScreenShots(String fileName) {
