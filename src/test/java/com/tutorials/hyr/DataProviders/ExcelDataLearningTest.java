@@ -8,22 +8,19 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
-import static java.nio.file.Files.readAllLines;
-import static java.util.Locale.filter;
-import static org.apache.commons.collections4.IteratorUtils.toArray;
-
-public class ExcelDataLearning {
+public class ExcelDataLearningTest {
 
     private static final String COMMA_DELIMITER = ",";
-    public final Logger log = LogManager.getLogger(ExcelDataLearning.class);
+    public final Logger log = LogManager.getLogger(ExcelDataLearningTest.class);
 
 
     @Test
     void loginDetailsExcel() throws IOException {
-        String [][] array = getLoginDetails();
-        for(String[] data:array ){
-            log.info("data:{}",data);
+        String[][] array = getLoginDetails();
+        for (String[] strings : array) {
+            log.info("data {} ", Arrays.toString(strings));
         }
     }
 
