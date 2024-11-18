@@ -3,12 +3,12 @@
 <suite name="ListenersSuitePracticeTest">
 
     <listeners>
-        <listener class-name="org.luma.listeners.CustomListener" />
+        <listener class-name="com.practisingDaily.screenshotTest.ITestListenerClass" />
     </listeners>
 
     <test name="Test1">
         <classes>
-            <class name="com.practisingDaily.screenShots.ScreenShotsTest">
+            <class name="com.practisingDaily.screenshotTest.TestClass">
                 <methods>
                     <include name="googleTest" />
                 </methods>
@@ -18,7 +18,7 @@
 
     <test name="Test2">
         <classes>
-            <class name="com.practisingDaily.screenShots.ScreenShotsTest">
+            <class name="com.practisingDaily.screenshotTest.TestClass">
                 <methods>
                     <include name="orangeHRMTest" />
                 </methods>
