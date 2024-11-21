@@ -16,10 +16,12 @@ public class TestClass extends BaseTest {
     private final Logger log = LogManager.getLogger(TestClass.class);
 
     @Test
-    public void googleTest() {
+    public void googleTest() throws InterruptedException {
 
         log.info("First Test: Google Test");
         driver.get("https://www.google.co.in/?gws_rd=cr");
+
+        Thread.sleep(3);
 
         WebElement inputHYRElement = driver.findElement(By.name("q"));
         inputHYRElement.sendKeys("HYR Tutorials", Keys.ENTER);

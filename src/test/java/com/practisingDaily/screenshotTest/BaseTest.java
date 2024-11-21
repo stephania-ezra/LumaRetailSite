@@ -45,12 +45,12 @@ public class BaseTest {
 
         if (screenshotsSubFolderName == null) {
             LocalDateTime myDateObj = LocalDateTime.now();
-            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("ddMMyyyyHHmmss");
+            DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm:ss");
             screenshotsSubFolderName = myDateObj.format(myFormatObj);
         }
         TakesScreenshot takesScreenshot = (TakesScreenshot) driver;
         File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
-        File destFile = new File("./Screenshots/" + fileName);
+        File destFile = new File("./Screenshots/"+screenshotsSubFolderName+"/" + fileName);
         try {
             FileUtils.copyFile(sourceFile, destFile);
         } catch (IOException e) {
