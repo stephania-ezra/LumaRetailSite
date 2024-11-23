@@ -17,6 +17,7 @@ public class ReplaceBetweenCharString {
     public static void main(String[] args) {
 
         String str = "String Swap";
+        log.info("Before Swapping:{}", str);
         // swap r and p
         char[] letters = str.toCharArray();
         int indexP = str.indexOf('p');
@@ -32,6 +33,7 @@ public class ReplaceBetweenCharString {
         log.info("StringUtils.join {} ", StringUtils.join(letters, " ")); // [C@909217e
         //use String() method below to convert the swapped character array back to String array
         String s = new String(letters);
-        log.info("new String(letters) {}", s); // Stping Swar
+        //log.info("new String(letters) {}", s); // Stping Swar
+        log.info("After Swapping:{}", s);
     }
 }
