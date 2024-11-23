@@ -10,7 +10,7 @@ public class ReverseString {
     public static void main(String[] args) {
 
         //method 1 : using for loop
-        /*String s = "ezra";
+        /*String s = "ethan";
         int length = s.length(); //length is 5
         String reverse = "";
 
