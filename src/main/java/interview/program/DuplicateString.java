@@ -30,7 +30,7 @@ public class DuplicateString {
         }*/
 
     //method 2 : using HashSet
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         String[] names = {"Ethan", "collins", "Philo", "Ezra", "collins", "Philo"};
         Set<String> store = new HashSet<String>();
         for (String name : names) {
@@ -40,10 +40,10 @@ public class DuplicateString {
                 log.info("duplicate string is:{}", name);
             }
         }
-    }
+    }*/
 
     //method 3 : using HashMap
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         String[] names = {"Ethan", "collins", "Philo", "Ezra", "collins", "Philo"};
         Map<String, Integer> storeMap = new HashMap<String, Integer>();
         for (String name : names) {
@@ -54,14 +54,22 @@ public class DuplicateString {
                 storeMap.put(name, ++count);
             }
         }
+        //log.info(storeMap.entrySet());
 
-      /*  //incomplete
-        //get value from the map
-        Set<Map.Entry<String, Integer>> entrySet = storeMap.entrySet();
+        for(Map.Entry<String,Integer> entry :storeMap.entrySet()){
+            //log.info("Key:{}Value:{}", entry.getKey(), entry.getValue());
+            if(entry.getValue()>1){
+                log.info("Duplicate word is:{}", entry.getKey());
+            }
+        }
+    }
+}
+
+//incomplete
+//get value from the map
+        /*Set<Map.Entry<String, Integer>> entrySet = storeMap.entrySet();
         for (Map.Entry<String, Integer> entry : entrySet) {
             if (Map.Entry.comparingByKey() > 1) {
                 log.info("Duplicate string is:{}", entry.getKey());
             }
         }*/
-}
-
