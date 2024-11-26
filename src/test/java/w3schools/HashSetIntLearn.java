@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.HashSet;
 
-public class HashSetInt {
-    public static Logger log = LogManager.getLogger(HashSetInt.class);
+public class HashSetIntLearn {
+    public static Logger log = LogManager.getLogger(HashSetIntLearn.class);
 
     public static void main(String[] args) {
 

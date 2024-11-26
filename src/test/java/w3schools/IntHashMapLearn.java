@@ -5,8 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 
-public class IntHashMap {
-    public static Logger log = LogManager.getLogger(IntHashMap.class);
+public class IntHashMapLearn {
+    public static Logger log = LogManager.getLogger(IntHashMapLearn.class);
 
     public static void main(String[] args) {
         HashMap<String, Integer> people = new HashMap<String, Integer>();
