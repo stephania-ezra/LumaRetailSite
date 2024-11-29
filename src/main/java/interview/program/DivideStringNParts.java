@@ -3,6 +3,7 @@ package interview.program;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -20,21 +21,39 @@ public class DivideStringNParts {
         int len = a.length(); //10
 
         log.info("Please Enter number of parts");
-        int n = input.nextInt(); // 5
+        int noOfParts = input.nextInt(); // 5
 
-        int nl = len / n; //nl = 10/5 = 2;
-        String s;
+        char[] c = a.toCharArray(); // [H, e, l, l, o, w, o, r, l, d]
+        int parts = len / noOfParts; // 2
+        int startPos = 0;
+        int endPos = parts;
+        do {
+            char[] result = Arrays.copyOfRange(c, startPos, endPos); // Helloworld, 0, 2
 
-        if (len % n == 0) { //10%5 ==0
-            for (int i = 0; i < n; i++) { // i = 0 ; i <5 ; i++
-                s = "";
-                for (int j = nl * i; j < (i + 1) * nl; j++) { // j =2*0 ; j<1*2 ;j++
-                    s = s + a.charAt(j); // he
-                }
-                log.info(s);
+            log.info("startPos {} , endPos {} is {}", startPos, endPos, Arrays.toString(result));
+            startPos = endPos;
+            endPos += parts;
+
+            if (startPos < len && endPos > len) {
+                endPos = len;
+//                log.info("startPos {} , endPos {}", startPos, endPos);
             }
-        } else {
-            log.info("cant be divided");
+        } while (endPos <= len);
+
+
+        int nl = len / noOfParts; //nl = 10/5 = 2;
+        StringBuilder s;
+
+//        if (len % n == 0) { //10%5 ==0
+        for (int i = 0; i < noOfParts; i++) { // i = 0 ; i <5 ; i++
+            s = new StringBuilder();
+            for (int j = nl * i; j < (i + 1) * nl; j++) { // j =2*0 ; j<1*2 ;j++
+                s.append(a.charAt(j)); // he
+            }
+            log.info(s.toString());
         }
+//        } else {
+//            log.info("cant be divided");
+//        }
     }
 }
