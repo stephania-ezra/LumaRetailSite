@@ -29,10 +29,10 @@ public class MaximumAndMinimum {
         //assume first element is minimum
 
         int min = a[0];
-        for ( int i = 1 ; i < a.length ; i++){
+        for (int i = 1; i < a.length; i++) {
             //check with darli , if I give i <= a.length then
             //array index out of bounds exception will come
-            if (a[i] < min){
+            if (a[i] < min) {
                 min = a[i];
             }
         }
@@ -52,4 +52,8 @@ public class MaximumAndMinimum {
 // <-------------Minimum element workflow------>
 // 1. assume min = 50
 //2. 40<50 --> true , min is 40
-//3.60<40 --> false 
+//3.60<40 --> false , min is 40
+//4.80<40 --> false , min is 40;
+//5.10<40 --> true , min is 10;
+//6.20<10 --> false ,min is 10;
+//7.30<10 --> false , min is 10
