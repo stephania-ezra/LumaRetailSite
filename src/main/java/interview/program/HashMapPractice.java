@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class HashMapPractice {
     public static Logger log = LogManager.getLogger(HashMapPractice.class);
@@ -25,10 +26,16 @@ public class HashMapPractice {
         // log.info(employee.values().contains("Chennai"));
 
         //log.info(employee.containsValue("Chennai"));
-        for (String key : employee.keySet()) {
+        /*for (String key : employee.keySet()) {
             if (employee.get(key).equalsIgnoreCase("chennai")) {
                 log.info("Name: {} City: {}", key, employee.get(key));
           }
+        }*/
+
+        for (String key : employee.keySet()){
+            if(employee.get(key).equalsIgnoreCase("chennai")){
+                log.info("Name: {} City: {}", key, employee.get(key));
+            }
         }
     }
 }
