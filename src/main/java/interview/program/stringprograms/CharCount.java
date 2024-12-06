@@ -14,7 +14,7 @@ public class CharCount {
 
     HashMap<Character,Integer> charMap = new HashMap<Character,Integer>();
 
-    String s = " ";
+    String s = "test";
 
     void getCharCount(){
      char[] strArray = s.toCharArray();
