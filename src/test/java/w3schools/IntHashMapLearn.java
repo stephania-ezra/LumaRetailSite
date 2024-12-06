@@ -17,6 +17,7 @@ public class IntHashMapLearn {
         people.put("Phil", 63);
 
         log.info(people.get("Collins"));
+
         log.info("Size of people HashMap is:{}", people.size());
         log.info(people.remove("Phil"));
 
