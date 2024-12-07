@@ -10,19 +10,21 @@ import org.apache.logging.log4j.Logger;
 public class SwapFirstAndLastLetterWord {
     public static Logger log = LogManager.getLogger(CreateNewString.class);
 
-    String s = "In the box";
-    String w = s + ' ';
-    String word = "";
-    String newString = "";
-
     public static void main(String[] args) {
         SwapFirstAndLastLetterWord sfallw = new SwapFirstAndLastLetterWord();
         sfallw.swapFirstLastLetter();
     }
 
     void swapFirstLastLetter() {
-        for (int i = 0; i < w.length(); i++) {
-            char c = w.charAt(i);
+        String s = "In the box";
+        log.info("The Given String is:{}", s);
+        //String w = s + ' ';
+        s += ' ';
+        String word = "";
+        String newString = "";
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
             if (c != ' ') {
                 word += c;
             } else {
@@ -33,6 +35,6 @@ public class SwapFirstAndLastLetterWord {
                 word = "";
             }
         }
-        log.info("New String is:{}", newString);
+        log.info("Swapped String is:{}", newString);
     }
 }

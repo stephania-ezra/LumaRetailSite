@@ -6,19 +6,20 @@ import org.apache.logging.log4j.Logger;
 public class CapitalizeEachWordInSen {
     public static Logger log = LogManager.getLogger(CreateNewString.class);
 
-    String s = "my son ethan";
-    String w = s + ' ';
-    String word = "";
-    String newString = "";
-
     public static void main(String[] args) {
         CapitalizeEachWordInSen cewis = new CapitalizeEachWordInSen();
         cewis.capitalizeEachWord();
     }
 
     void capitalizeEachWord() {
-        for (int i = 0; i < w.length(); i++) {
-            char c = w.charAt(i);
+        String s = "my son ethan";
+        log.info("The Given String is:{}", s);
+        //String w = s + ' ';
+        s += ' ';
+        String word = "";
+        String newString = "";
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
             if (c != ' ') {
                 word += c;
             } else {
@@ -28,6 +29,6 @@ public class CapitalizeEachWordInSen {
                 word = "";
             }
         }
-        log.info("New String is:{}", newString);
+        log.info("Capitalized Words in String is:{}", newString);
     }
 }

@@ -3,23 +3,26 @@ package interview.program.string.wordprogram;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ChangeCaseAlternateWord {
+public class ChangeCaseOfAlternateWords {
     public static Logger log = LogManager.getLogger(CreateNewString.class);
 
-    String s = "my son ethan";
-    String w = s + ' ';
-    String word = "";
-    String newString = "";
-    int count = 0;
-
     public static void main(String[] args) {
-        ChangeCaseAlternateWord ccaw = new ChangeCaseAlternateWord();
+        ChangeCaseOfAlternateWords ccaw = new ChangeCaseOfAlternateWords();
         ccaw.changeCaseAlternate();
     }
 
     void changeCaseAlternate() {
-        for (int i = 0; i < w.length(); i++) {
-            char c = w.charAt(i);
+        String s = "my son ethan";
+        log.info("Given String is:{}", s);
+
+        //String w = s + ' ';
+        s += ' ';
+        String word = "";
+        String newString = "";
+        int count = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
             if (c != ' ') {
                 word += c;
             } else {
@@ -32,7 +35,7 @@ public class ChangeCaseAlternateWord {
                 word = "";
             }
         }
-        log.info("New String is:{}", newString);
+        log.info("Case Changed In Alternate Words:{}", newString);
     }
 }
 /**
