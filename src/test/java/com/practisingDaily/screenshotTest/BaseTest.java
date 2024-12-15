@@ -41,7 +41,7 @@ public class BaseTest {
         }
     }
 
-    public void captureScreenShots(String fileName) {
+    public static void captureScreenShots(String fileName) {
 
         if (screenshotsSubFolderName == null) {
             LocalDateTime myDateObj = LocalDateTime.now();
