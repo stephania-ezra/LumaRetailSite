@@ -31,8 +31,8 @@ public class Chapter11 {
         ExtentSparkReporter esr_skipAndWarning = new ExtentSparkReporter("SkipAndWarningTests.html");
 // filter only the Skip and Warning tests
         esr_skipAndWarning.filter().statusFilter().as(new Status[]{
-                Status.SKIP,
-                Status.WARNING
+               Status.SKIP,
+               Status.WARNING
         }).apply();
 
         er.attachReporter(esr_all,esr_failed,esr_skipAndWarning);

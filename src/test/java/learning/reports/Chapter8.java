@@ -25,14 +25,14 @@ public class Chapter8 {
         ExtentSparkReporterConfig config = esr.config();
 
         //modifications
-        /*config.setTheme(Theme.DARK);
+        config.setTheme(Theme.DARK);
         config.setDocumentTitle("I am happy today");
         config.setCss("badge-primary{background-color:fecd2f}");
         config.setReportName("Learning Report ha ha");
         config.setTimeStampFormat("dd-MM-yyyy hh:mm:ss");
 
         //changing the background color of the time details
-        config.setCss(".badge-primary{background-color:#fd3259}");*/
+        config.setCss(".badge-primary{background-color:#fd3259}");
 
         //disappearing the logo
         //config.setJs("document.getElementsByClassName('logo')[0].style.display='none'");
