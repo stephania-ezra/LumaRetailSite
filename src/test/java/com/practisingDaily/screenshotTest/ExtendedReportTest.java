@@ -4,41 +4,35 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.awt.*;
-import java.io.File;
+public class ExtendedReportTest extends BaseTest {
 
-public class TestClass extends BaseTest {
-    public static WebDriver driver;
-    private final Logger log = LogManager.getLogger(TestClass.class);
+    private final Logger log = LogManager.getLogger(ExtendedReportTest.class);
 
     @Test(testName = "TestGoogle", groups={"smoke"})
     public void googleTest() throws Exception {
-        driver = new ChromeDriver();
+
         log.info("First Test: Google Test");
-        et.info("Navigated to URL");
-        driver.get("https://www.google.co.in/?gws_rd=cr");
+        extentTest.info("Navigated to URL");
+        driver.get("https://www.google.co.in");
 
-        Thread.sleep(3);
-        WebElement inputHYRElement = driver.findElement(By.name("q"));
-        et.info("Entered Text in Search box");
+        Thread.sleep(3000);
+        WebElement inputHYRElement = driver.findElement(By.xpath("/html/body/div[1]/div[3]" +
+                "/form/div[1]/div[1]/div[1]/div[1]/div[2]/textarea"));
+        extentTest.info("Entered Text in Search box");
         inputHYRElement.sendKeys("HYR Tutorials", Keys.ENTER);
+        Thread.sleep(3000);
         Assert.assertEquals(driver.getTitle(), "HYR Tutorials - Google Search", "Title Mismatch");
-        et.fail("Assertion test is passed for WebPage Title");
-
+        extentTest.fail("Assertion test is passed for WebPage Title");
     }
 
     @Test(testName = "TestOrangeHRM",groups = {"smoke","Regression"})
     public void orangeHRMTest() throws Exception {
         log.info("OrangeHRMTest");
-        et.info("Navigated to URL");
+        extentTest.info("Navigated to URL");
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 
         Thread.sleep(3);
@@ -59,7 +53,7 @@ public class TestClass extends BaseTest {
                         "div.orangehrm-login-container > div > div.orangehrm-login-slot > div.orangehrm-login-form > " +
                         "form > div.oxd-form-actions.orangehrm-login-action > button"));
         loginButton.click();
-        et.pass("Test is passed for OrangeHRM Login");
+        extentTest.pass("Test is passed for OrangeHRM Login");
 
     }
 }

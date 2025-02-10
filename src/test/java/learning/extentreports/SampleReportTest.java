@@ -27,7 +27,6 @@ public class SampleReportTest {
 
         driver = new ChromeDriver();
         driver.get("https://www.google.co.in/?gws_rd=cr");
-
     }
 
     @AfterTest

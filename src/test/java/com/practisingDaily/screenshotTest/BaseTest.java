@@ -11,7 +11,6 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
@@ -23,15 +22,18 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class BaseTest {
-    public static WebDriver driver;
-    public static String screenshotsSubFolderName;
-    public static ExtentReports er;
-    public static ExtentTest et;
-    public static Logger log = LogManager.getLogger(BaseTest.class);
+    public final Logger log = LogManager.getLogger(BaseTest.class);
+    public WebDriver driver;
+    public String screenshotsSubFolderName;
+    public ExtentReports extentReports;
+    public ExtentTest extentTest;
+    Path extendedTestHtml = Paths.get("src", "test", "resources", "extended-test.html");
 
     @Parameters("browserName")
     @BeforeTest
@@ -49,7 +51,7 @@ public class BaseTest {
                 driver = new ChromeDriver();
                 break;
         }
-        log.info("Setting Context");
+        log.info("Setting Context browserName {}", browserName);
         driver.manage().window().maximize();
         context.setAttribute("WebDriver", driver);
 
@@ -62,52 +64,44 @@ public class BaseTest {
         String author = context.getCurrentXmlTest().getParameter("author");
 
         //context.getName() gives the test name
-        et = er.createTest(context.getName(), "My first ExtentReport in TestNG");
-        et.assignAuthor(author);
-        et.assignDevice(device);
-    }
-
-    @AfterTest
-    public void tearDown(ITestResult result) throws IOException {
-        //closing the selenium WebDriver
-        //driver.quit();
-        Desktop.getDesktop().browse(new File("Tests.html").toURI());
+        extentTest = extentReports.createTest(context.getName(), "My first ExtentReport in TestNG");
+        extentTest.assignAuthor(author);
+        extentTest.assignDevice(device);
     }
 
 
     @BeforeSuite
-    public void initializeExtentReports() throws IOException {
-        ExtentSparkReporter esr_all = new ExtentSparkReporter("Tests.html");
-        //testing
-        //esr_all.loadXMLConfig(new File("./src/test/resources/testng2.xml"));
+    public void initializeExtentReports() {
+        ExtentSparkReporter esr_all = new ExtentSparkReporter(extendedTestHtml.toFile());
 
-        er = new ExtentReports();
-        er.attachReporter(esr_all);
+        extentReports = new ExtentReports();
+        extentReports.attachReporter(esr_all);
 
         //system related information
-        er.setSystemInfo("OS Version",System.getProperty("os.version"));
-        er.setSystemInfo("Java Version",System.getProperty("java.version"));
+        extentReports.setSystemInfo("OS Version",System.getProperty("os.version"));
+        extentReports.setSystemInfo("Java Version",System.getProperty("java.version"));
     }
 
     @AfterSuite
     public void generateExtentReports() throws IOException {
-        er.flush();
+        extentReports.flush();
         driver.quit();
-        Desktop.getDesktop().browse(new File("Tests.html").toURI());
+        Desktop.getDesktop().browse(extendedTestHtml.toUri());
     }
 
-    @AfterMethod
+
     //Another method for capturing failed screenshots
     // dependency Injection - ITestResult object
+    @AfterMethod
     public void screenshotCapture(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
-            captureScreenShots(result.getTestContext().getName() + "_" + result.getMethod().getMethodName() + ".jpg");
+            String screenshotFile = captureScreenShots(result.getTestContext().getName() + "_"
+                    + result.getMethod().getMethodName() + ".jpg");
+            extentTest.addScreenCaptureFromPath(screenshotFile, result.getTestName());
         }
     }
 
-    @AfterMethod
-    public static String captureScreenShots(String fileName) {
-
+    String captureScreenShots(String fileName) {
         if (screenshotsSubFolderName == null) {
             LocalDateTime myDateObj = LocalDateTime.now();
             DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm:ss");
@@ -122,20 +116,21 @@ public class BaseTest {
             throw new RuntimeException(e);
         }
         log.info("Screenshot saved successfully");
-        return fileName;
+        return destFile.getAbsolutePath();
     }
 
-    @AfterMethod
+
     public void checkStatus(Method m , ITestResult result){
         if (result.getStatus() == ITestResult.FAILURE ){
-            String screenshotPath = null;
-            screenshotPath = captureScreenShots(result.getTestContext().getName() + "_" + result.getMethod().getMethodName() + ".jpg");
-            et.addScreenCaptureFromPath(screenshotPath);
-            et.fail(result.getThrowable());
+            String screenshotPath;
+            screenshotPath = captureScreenShots(result.getTestContext().getName()
+                    + "_" + result.getMethod().getMethodName() + ".jpg");
+            extentTest.addScreenCaptureFromPath(screenshotPath);
+            extentTest.fail(result.getThrowable());
         }else if(result.getStatus() == ITestResult.SUCCESS){
-            et.pass(m.getName() + " is passed ");
+            extentTest.pass(m.getName() + " is passed ");
         }
         // m.getAnnotation(Test.class).groups()
-        et.assignCategory(m.getAnnotation(Test.class).groups());
+        extentTest.assignCategory(m.getAnnotation(Test.class).groups());
     }
 }

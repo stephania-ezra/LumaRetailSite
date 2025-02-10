@@ -13,11 +13,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-import static com.practisingDaily.screenshotTest.BaseTest.captureScreenShots;
-import static org.openqa.selenium.devtools.v124.page.Page.captureScreenshot;
 
 /**
  * Extent reports for test level and Log Level

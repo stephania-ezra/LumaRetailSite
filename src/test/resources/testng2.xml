@@ -5,22 +5,22 @@
         <parameter name="browserName" value="chrome" />
         <parameter name="author" value="Collins" />
         <classes>
-            <class name="com.practisingDaily.screenshotTest.TestClass">
+            <class name="com.practisingDaily.screenshotTest.ExtendedReportTest">
                 <methods>
                     <include name="googleTest" />
                 </methods>
             </class>
         </classes>
     </test><!---Test-->
-    <test name="TestOrangeHRM">
-        <parameter name="browserName" value="Chrome" />
-        <parameter name="author" value="Ezra" />
-        <classes>
-            <class name="com.practisingDaily.screenshotTest.TestClass">
-                <methods>
-                    <include name="orangeHRMTest" />
-                </methods>
-            </class>
-        </classes>
-    </test><!---Test-->
+<!--    <test name="TestOrangeHRM">-->
+<!--        <parameter name="browserName" value="Chrome" />-->
+<!--        <parameter name="author" value="Ezra" />-->
+<!--        <classes>-->
+<!--            <class name="com.practisingDaily.screenshotTest.ExtendedReportTest">-->
+<!--                <methods>-->
+<!--                    <include name="orangeHRMTest" />-->
+<!--                </methods>-->
+<!--            </class>-->
+<!--        </classes>-->
+<!--    </test>&lt;!&ndash;-Test&ndash;&gt;-->
 </suite>
