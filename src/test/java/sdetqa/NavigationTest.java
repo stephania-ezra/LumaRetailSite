@@ -21,5 +21,6 @@ public class NavigationTest {
 
         driver.navigate().refresh(); // refresh / reload the page
 
+        driver.quit();
     }
 }
