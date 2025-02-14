@@ -24,7 +24,7 @@ public class JetPetDataProviderTest {
 
     //instead of passing multiple string values in parameter , by passing String[]
     //as parameter and calling the values String[0] like that is much nice :)
-    public void jetPetCreateUser(String[] s) {
+    public void jetPetCreateUser(String[] s) throws InterruptedException {
 
         log.info("Step1 : Launching URL");
         WebDriver driver = new ChromeDriver();
@@ -112,10 +112,14 @@ public class JetPetDataProviderTest {
         Select language = new Select(driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[1]/td[2]/select")));
         language.selectByValue(s[13]);
+        //language.selectByVisibleText("japanese");
+        //language.selectByIndex(0);
 
         Select category = new Select(driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[2]/td[2]/select")));
         category.selectByValue(s[14]);
+        //category.selectByVisibleText("CATS");
+        //category.selectByIndex(4);
 
         WebElement EnableMyListElement = driver.findElement(By
                 .xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[3]/td[2]/input"));
