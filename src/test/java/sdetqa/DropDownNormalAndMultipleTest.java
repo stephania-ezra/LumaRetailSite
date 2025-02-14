@@ -12,14 +12,12 @@ import java.util.List;
 
 import static com.practisingDaily.LoginDemoQATest.log;
 
-
-
 public class DropDownNormalAndMultipleTest {
 
     WebDriver driver;
 
     @Test
-    public void dropDownCheck(){
+    public void dropDownCheck() throws InterruptedException {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://petstore.octoperf.com/actions/Catalog.action");
@@ -100,12 +98,21 @@ public class DropDownNormalAndMultipleTest {
 
         log.info("Step 7: Displaying Profile Information");
 
-        WebElement languageDropDownElement = driver.findElement(By.xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[1]/td[2]/select"));
-        Select language = new Select(languageDropDownElement);
-        language.selectByVisibleText("japanese");
+        WebElement languageDropDownElement = driver.findElement(By.
+                xpath("//*[@id=\"Catalog\"]/form/table[3]/tbody/tr[1]/td[2]/select"));
+        Select languageDropDown = new Select(languageDropDownElement);
+        //language.selectByVisibleText("japanese");
 
         //language.selectByVisibleText("japanese");
         //language.selectByIndex(0);
+
+        List<WebElement> languages = languageDropDown.getOptions();
+        for(WebElement language : languages){
+            if(language.getText().equals("japanese")){
+                language.click();
+                break;
+            }
+        }
 
         //method 1
         /*WebElement categoryDropDownElement = driver.findElement(By.
@@ -153,13 +160,14 @@ public class DropDownNormalAndMultipleTest {
     }
 
     //method for selecting multiple dropdowns
-    public void selectOptionsFromDropDown(WebElement element , String value){
+   public void selectOptionsFromDropDown(WebElement element , String value){
         Select dropdown = new Select(element);
         List<WebElement> allOptions = dropdown.getOptions();
 
         for(WebElement option :allOptions ) {
             if (option.getText().equals(value)) {
                 option.click();
+                break;
             }
         }
     }
